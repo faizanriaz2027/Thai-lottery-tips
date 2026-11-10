@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ur-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thai Lottery Tips</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#DDEBE4; --card:#FCFEFD; --ink:#12304A; --soft:#56707A;
+  --stamp:#C4122F; --bar:#2B7A62; --line:#D5E2DC;
+  --num:"Chakra Petch",sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.125rem/1.6 Sarabun,system-ui,sans-serif}
+main{max-width:34rem;margin:0 auto;padding:1rem 1rem 3rem}
+h1,h2,p{margin:0}
+h1{font:700 clamp(1.9rem,8.5vw,2.6rem)/1.1 var(--num)}
+h2{font:700 1.35rem/1.2 var(--num);margin-bottom:.75rem}
+a{color:var(--ink)}
+.muted{color:var(--soft);font-size:1rem}
+
+.ticket-top,.ticket-bottom{padding:1.25rem 1.5rem}
+.ticket-top{
+  border-radius:14px 14px 0 0;
+  background:
+    radial-gradient(circle at 0 100%,var(--paper) 11px,transparent 12px),
+    radial-gradient(circle at 100% 100%,var(--paper) 11px,transparent 12px),
+    var(--card);
+}
+.ticket-bottom{
+  border-radius:0 0 14px 14px;
+  background:
+    radial-gradient(circle at 0 0,var(--paper) 11px,transparent 12px),
+    radial-gradient(circle at 100% 0,var(--paper) 11px,transparent 12px),
+    linear-gradient(90deg,var(--soft) 55%,transparent 0) 0 0/14px 2px repeat-x,
+    var(--card);
+}
+#countdown{font:500 1.25rem/1.3 var(--num);color:var(--stamp);margin-top:.35rem}
+.picks{display:flex;flex-wrap:wrap;gap:1.25rem 2rem;margin-bottom:.75rem}
+.cells{display:flex;gap:.35rem;margin:.25rem 0 .6rem}
+.cell{
+  font:700 clamp(2.6rem,13vw,3.75rem)/1 var(--num);
+  min-width:1.15em;padding:.16em 0 .12em;text-align:center;
+  border:2px solid var(--ink);border-radius:6px;background:#fff;
+}
+.stamp{
+  display:inline-block;font:700 1rem/1 var(--num);color:var(--stamp);
+  border:2px solid var(--stamp);border-radius:4px;padding:.3em .55em;transform:rotate(-3deg);
+}
+
+.block{background:var(--card);border-radius:14px;padding:1.25rem 1.5rem;margin-top:1rem}
+.rows{list-style:none;margin:0;padding:0}
+.row{display:grid;grid-template-columns:4.5rem 1fr auto;align-items:center;gap:.75rem;padding:.3rem 0}
+.num{font:700 1.6rem/1 var(--num);letter-spacing:.04em}
+.bar{height:.6rem;background:#E3EDE8;border-radius:99px;overflow:hidden}
+.fill{display:block;height:100%;background:var(--bar);border-radius:99px}
+
+details{border-top:1px solid var(--line);padding:.6rem 0}
+details:first-of-type{border-top:0}
+summary{cursor:pointer;font-weight:600}
+summary:focus-visible,a:focus-visible{outline:3px solid var(--stamp);outline-offset:3px}
+.voice{margin:.7rem 0 0;padding-left:.9rem;border-left:3px solid var(--line)}
+.voice strong{font-weight:600}
+.digits{font-family:var(--num);letter-spacing:.03em;overflow-wrap:anywhere}
+.result{font:700 2rem/1.1 var(--num);letter-spacing:.06em;margin:.25rem 0 .5rem}
+.hits{list-style:none;margin:.75rem 0 0;padding:0}
+.hits li{border-top:1px solid var(--line);padding:.45rem 0}
+footer{margin-top:1.5rem}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="ticket-top">
+      <p class="muted">Thai Lottery ka agla draw</p>
+      <h1 id="drawDate">...</h1>
+      <p id="countdown"></p>
+    </div>
+    <div class="ticket-bottom">
+      <div class="picks" id="picks"></div>
+      <p class="muted" id="heroNote">Tips khul rahi hain...</p>
+    </div>
+  </header>
+
+  <div id="tallies"></div>
+
+  <section class="block" id="sourcesBlock" hidden>
+    <h2>Har source ki apni tips</h2>
+    <div id="sourceList"></div>
+  </section>
+
+  <section class="block" id="lastBlock" hidden>
+    <h2>Pichle draw mein kya hua</h2>
+    <div id="last"></div>
+  </section>
+
+  <footer class="muted">
+    Draw random hota hai. Yeh page sirf ginti dikhata hai ke kis number ko kitne logon ne bataya; jeet ki guarantee nahi.
+  </footer>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const el = (tag, cls, text) => {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+};
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const niceDate = (iso) => { const [y, m, d] = iso.split("-").map(Number); return `${d} ${MONTHS[m - 1]} ${y}`; };
+const daysLeft = (iso) => {
+  const [y, m, d] = iso.split("-").map(Number), n = new Date();
+  return Math.round((Date.UTC(y, m - 1, d) - Date.UTC(n.getFullYear(), n.getMonth(), n.getDate())) / 864e5);
+};
+async function load(file, fallback) {
+  try {
+    const r = await fetch(file + "?t=" + Date.now());
+    if (!r.ok) throw new Error();
+    return await r.json();
+  } catch { return fallback; }
+}
+
+function pick(label, item) {
+  const wrap = el("div");
+  wrap.append(el("p", "muted", label));
+  const row = el("div", "cells");
+  row.setAttribute("aria-label", item.n);
+  for (const ch of item.n) row.append(el("span", "cell", ch));
+  wrap.append(row, el("p", "stamp", `${item.count} ne bataya`));
+  return wrap;
+}
+
+function tallyBlock(title, items, total, minCount) {
+  const sec = el("section", "block");
+  sec.append(el("h2", null, title));
+  const rows = (items || []).filter((i) => i.count >= minCount);
+  if (!rows.length) {
+    sec.append(el("p", "muted", "Abhi koi number do jagah ek jaisa nahi mila."));
+    return sec;
+  }
+  const ol = el("ol", "rows");
+  for (const it of rows) {
+    const li = el("li", "row"), bar = el("span", "bar"), fill = el("span", "fill");
+    fill.style.width = Math.max(4, Math.round((it.count / total) * 100)) + "%";
+    bar.append(fill);
+    li.append(el("span", "num", it.n), bar, el("span", "muted", `${it.count} ne`));
+    ol.append(li);
+  }
+  sec.append(ol);
+  return sec;
+}
+
+function line(label, list) {
+  if (!list || !list.length) return null;
+  const p = el("p");
+  p.append(el("span", "muted", label + ": "), el("span", "digits", list.join("  ")));
+  return p;
+}
+
+function renderSources(sources) {
+  const box = $("sourceList");
+  for (const s of sources) {
+    const d = el("details");
+    const count = s.voices.length;
+    const status = !s.ok ? "data nahi mila" : count ? `${count} tips` : "is draw ki tip nahi mili";
+    const sum = el("summary", null, s.name + " ");
+    sum.append(el("span", "muted", `(${status})`));
+    d.append(sum);
+    for (const v of s.voices) {
+      const div = el("div", "voice");
+      div.append(el("strong", null, v.name));
+      if (v.copy) div.append(el("span", "muted", " (kisi aur list jaisi hai, ginti mein shamil nahi)"));
+      for (const l of [line("Upar digits", v.up_digits), line("Upar sets", v.up_sets),
+                       line("Neeche digits", v.down_digits), line("Neeche pairs", v.down_pairs)]) {
+        if (l) div.append(l);
+      }
+      d.append(div);
+    }
+    const p = el("p", "muted"), a = el("a", null, "Asal page kholein");
+    a.href = s.url; a.target = "_blank"; a.rel = "noopener";
+    p.append(a); d.append(p);
+    box.append(d);
+  }
+  $("sourcesBlock").hidden = !sources.length;
+}
+
+function renderLast(h) {
+  if (!h) return;
+  const box = $("last");
+  box.append(el("p", "muted", niceDate(h.draw_date) + " ka pehla inaam"));
+  box.append(el("p", "result", h.first_prize));
+  box.append(el("p", null, `Upar (3UP): ${h.up3}   Neeche: ${h.down2}`));
+  const yes = (b) => (b ? "laga" : "nahi laga");
+  box.append(el("p", null, `Sab se zyada bataya gaya number: upar ${yes(h.consensus.up)}, neeche ${yes(h.consensus.down)}.`));
+  const ul = el("ul", "hits");
+  for (const s of h.sources) {
+    const got = [];
+    if (s.up_exact) got.push("upar seedha laga");
+    else if (s.up_any_order) got.push("upar ulat-palat laga");
+    if (s.down) got.push("neeche laga");
+    const li = el("li", null, s.name + ": ");
+    li.append(el("span", "muted", got.length ? got.join(", ") : "kuch nahi laga"));
+    ul.append(li);
+  }
+  box.append(ul);
+  $("lastBlock").hidden = false;
+}
+
+(async () => {
+  const [data, history] = await Promise.all([load("data.json", null), load("history.json", [])]);
+  renderLast(history[0]);
+  if (!data) {
+    $("drawDate").textContent = "Abhi data nahi aaya";
+    $("heroNote").textContent = "Collector abhi tak nahi chala. GitHub ke Actions tab se \"Collect tips\" chalayein.";
+    return;
+  }
+  $("drawDate").textContent = niceDate(data.draw_date);
+  const n = daysLeft(data.draw_date);
+  $("countdown").textContent = n > 1 ? `${n} din baqi` : n === 1 ? "Kal draw hai" : n === 0 ? "Aaj draw hai" : "";
+
+  if (data.status !== "ready") {
+    $("heroNote").textContent = `Is draw ki tips ${niceDate(data.collect_from)} se jama hona shuru hongi.`;
+    return;
+  }
+  const top = data.top, total = Math.max(1, data.voices_counted);
+  const up = top.up_sets[0], down = top.down_pairs[0];
+  if (up && up.count >= 2) $("picks").append(pick("Upar (3UP) mein sab se zyada", up));
+  if (down && down.count >= 2) $("picks").append(pick("Neeche mein sab se zyada", down));
+  const okSources = data.sources.filter((s) => s.voices.length).length;
+  const when = new Date(data.updated_at).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  $("heroNote").textContent = `${okSources} sources se ${data.voices_counted} tips gini gayi. Aakhri update: ${when}.`;
+
+  $("tallies").append(
+    tallyBlock("Upar (3UP) ke digits", top.up_digits, total, 1),
+    tallyBlock("Upar (3UP) ke sets", top.up_sets, total, 2),
+    tallyBlock("Neeche ke digits", top.down_digits, total, 1),
+    tallyBlock("Neeche ke pairs", top.down_pairs, total, 2)
+  );
+  renderSources(data.sources);
+})();
+</script>
+</body>
+</html>
