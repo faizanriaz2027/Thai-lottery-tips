@@ -16,7 +16,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # ---------------- settings ----------------
-MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.6-27b")
+MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
 API_KEY = os.environ.get("GROQ_API_KEY", "")
 RESULT_URL = "https://news.sanook.com/lotto/"   # page used to read the official result
 START_DAYS_BEFORE = 6      # start collecting this many days before a draw
