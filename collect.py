@@ -5,6 +5,7 @@ import json
 import os
 import re
 import sys
+import time
 from collections import Counter
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -15,13 +16,13 @@ import requests
 from bs4 import BeautifulSoup
 
 # ---------------- settings ----------------
-MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
-API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.6-27b")
+API_KEY = os.environ.get("GROQ_API_KEY", "")
 RESULT_URL = "https://news.sanook.com/lotto/"   # page used to read the official result
 START_DAYS_BEFORE = 6      # start collecting this many days before a draw
 MAX_LINKED_PAGES = 3       # tip posts to follow from each source page
-MAX_IMAGES = 4             # paper images read per page
-MAX_TEXT = 12000           # characters of page text sent to the AI
+MAX_IMAGES = 3             # paper images read per page
+MAX_TEXT = 8000            # characters of page text sent to the AI
 # Draws moved off the 1st/16th (holidays): "usual date": "actual date"
 DRAW_OVERRIDES = {
     # "2027-01-01": "2026-12-30",
@@ -139,29 +140,42 @@ def load_images(urls):
         mt = r.headers.get("content-type", "").split(";")[0].strip().lower()
         if mt not in ("image/jpeg", "image/png", "image/webp"):
             continue
-        if not 20_000 <= len(r.content) <= 3_000_000:
+        if not 20_000 <= len(r.content) <= 2_500_000:
             continue
-        out.append({"type": "image", "source": {
-            "type": "base64", "media_type": mt, "data": base64.b64encode(r.content).decode()}})
+        data = base64.b64encode(r.content).decode()
+        out.append({"type": "image_url", "image_url": {"url": f"data:{mt};base64,{data}"}})
     return out
 
 
-# ---------------- AI reader ----------------
 def ask_claude(system, content, max_tokens=4000):
-    try:
-        r = requests.post(
-            "https://api.anthropic.com/v1/messages",
-            headers={"x-api-key": API_KEY, "anthropic-version": "2023-06-01",
-                     "content-type": "application/json"},
-            json={"model": MODEL, "max_tokens": max_tokens, "system": system,
-                  "messages": [{"role": "user", "content": content}]},
-            timeout=120,
-        )
-    except Exception as e:
-        raise AIError(f"AI request failed: {e}")
+    """Sends the page to Groq and returns the JSON it answers with."""
+    body = {
+        "model": MODEL,
+        "max_completion_tokens": max_tokens,
+        "temperature": 0,
+        "messages": [{"role": "system", "content": system},
+                     {"role": "user", "content": content}],
+    }
+    for attempt in range(5):
+        try:
+            r = requests.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={"Authorization": f"Bearer {API_KEY}", "content-type": "application/json"},
+                json=body, timeout=120)
+        except Exception as e:
+            raise AIError(f"AI request failed: {e}")
+        if r.status_code == 429 and attempt < 4:      # free limit hit: wait and try again
+            try:
+                wait = float(r.headers.get("retry-after", 30))
+            except ValueError:
+                wait = 30
+            time.sleep(min(wait, 90) + 2)
+            continue
+        break
     if r.status_code != 200:
         raise AIError(f"AI error {r.status_code}: {r.text[:300]}")
-    text = "".join(b.get("text", "") for b in r.json().get("content", []) if b.get("type") == "text")
+    text = r.json()["choices"][0]["message"].get("content") or ""
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.S)
     m = re.search(r"\{.*\}", text, re.S)
     try:
         return json.loads(m.group(0)) if m else {}
@@ -283,7 +297,7 @@ def update_history(prev):
 # ---------------- main ----------------
 def main():
     if not API_KEY:
-        sys.exit("ANTHROPIC_API_KEY is missing")
+        sys.exit("GROQ_API_KEY is missing")
     today = datetime.now(BKK).date()
     dates = draw_dates_around(today)
     nxt = next(d for d in dates if d >= today)
