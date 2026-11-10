@@ -1,0 +1,737 @@
+{
+ "draw_date": "2026-11-16",
+ "status": "ready",
+ "collect_from": "2026-11-10",
+ "updated_at": "2026-11-10T18:55+07:00",
+ "voices_total": 22,
+ "voices_counted": 22,
+ "top": {
+  "up_digits": [
+   {
+    "n": "2",
+    "count": 7
+   },
+   {
+    "n": "5",
+    "count": 7
+   },
+   {
+    "n": "6",
+    "count": 7
+   },
+   {
+    "n": "7",
+    "count": 7
+   },
+   {
+    "n": "4",
+    "count": 6
+   },
+   {
+    "n": "8",
+    "count": 6
+   },
+   {
+    "n": "9",
+    "count": 6
+   },
+   {
+    "n": "1",
+    "count": 5
+   },
+   {
+    "n": "3",
+    "count": 5
+   },
+   {
+    "n": "0",
+    "count": 3
+   }
+  ],
+  "up_sets": [
+   {
+    "n": "764",
+    "count": 4
+   },
+   {
+    "n": "266",
+    "count": 3
+   },
+   {
+    "n": "617",
+    "count": 3
+   },
+   {
+    "n": "176",
+    "count": 2
+   },
+   {
+    "n": "264",
+    "count": 2
+   },
+   {
+    "n": "464",
+    "count": 2
+   },
+   {
+    "n": "467",
+    "count": 2
+   },
+   {
+    "n": "588",
+    "count": 2
+   },
+   {
+    "n": "605",
+    "count": 2
+   },
+   {
+    "n": "622",
+    "count": 2
+   }
+  ],
+  "down_digits": [
+   {
+    "n": "5",
+    "count": 6
+   },
+   {
+    "n": "9",
+    "count": 6
+   },
+   {
+    "n": "2",
+    "count": 5
+   },
+   {
+    "n": "3",
+    "count": 5
+   },
+   {
+    "n": "0",
+    "count": 3
+   },
+   {
+    "n": "6",
+    "count": 3
+   },
+   {
+    "n": "7",
+    "count": 3
+   },
+   {
+    "n": "8",
+    "count": 3
+   },
+   {
+    "n": "1",
+    "count": 2
+   },
+   {
+    "n": "4",
+    "count": 2
+   }
+  ],
+  "down_pairs": [
+   {
+    "n": "23",
+    "count": 3
+   },
+   {
+    "n": "37",
+    "count": 3
+   },
+   {
+    "n": "56",
+    "count": 3
+   },
+   {
+    "n": "72",
+    "count": 3
+   },
+   {
+    "n": "76",
+    "count": 3
+   },
+   {
+    "n": "20",
+    "count": 2
+   },
+   {
+    "n": "26",
+    "count": 2
+   },
+   {
+    "n": "27",
+    "count": 2
+   },
+   {
+    "n": "28",
+    "count": 2
+   },
+   {
+    "n": "32",
+    "count": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "url": "https://thairesults.com/predictions",
+   "name": "Thai Lotto Predictions 16 November 2026 | 3UP & 2D VIP Tips",
+   "ok": true,
+   "voices": [
+    {
+     "name": "Abdul",
+     "up_digits": [
+      "2",
+      "7",
+      "5"
+     ],
+     "up_sets": [
+      "762",
+      "275",
+      "273",
+      "264",
+      "266",
+      "464",
+      "764",
+      "679",
+      "965",
+      "875"
+     ],
+     "down_digits": [
+      "2",
+      "9"
+     ],
+     "down_pairs": [
+      "99",
+      "20",
+      "07"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Tarek",
+     "up_digits": [
+      "5",
+      "6",
+      "1"
+     ],
+     "up_sets": [
+      "038",
+      "951",
+      "458",
+      "227",
+      "335",
+      "506",
+      "551",
+      "777",
+      "588",
+      "669"
+     ],
+     "down_digits": [
+      "1",
+      "0"
+     ],
+     "down_pairs": [
+      "74",
+      "46",
+      "56"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Hakeem",
+     "up_digits": [
+      "7",
+      "6",
+      "4"
+     ],
+     "up_sets": [
+      "176",
+      "716",
+      "167",
+      "617",
+      "671",
+      "761",
+      "764",
+      "674",
+      "467",
+      "647"
+     ],
+     "down_digits": [
+      "2",
+      "8"
+     ],
+     "down_pairs": [
+      "76",
+      "28",
+      "71"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Ramzan",
+     "up_digits": [
+      "4",
+      "8",
+      "9"
+     ],
+     "up_sets": [
+      "794",
+      "479",
+      "749",
+      "947",
+      "453",
+      "597",
+      "360",
+      "934",
+      "843",
+      "147"
+     ],
+     "down_digits": [
+      "4",
+      "7"
+     ],
+     "down_pairs": [
+      "37",
+      "21",
+      "58"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Abdul Malek",
+     "up_digits": [
+      "6",
+      "0",
+      "3"
+     ],
+     "up_sets": [
+      "504",
+      "605",
+      "563",
+      "622",
+      "220",
+      "064",
+      "996",
+      "939",
+      "990",
+      "332"
+     ],
+     "down_digits": [
+      "6",
+      "0"
+     ],
+     "down_pairs": [
+      "46",
+      "00",
+      "36"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Rashed",
+     "up_digits": [
+      "7",
+      "8",
+      "9"
+     ],
+     "up_sets": [
+      "789",
+      "782",
+      "780",
+      "785",
+      "795",
+      "792",
+      "790",
+      "890",
+      "892",
+      "895"
+     ],
+     "down_digits": [
+      "2",
+      "3"
+     ],
+     "down_pairs": [
+      "32",
+      "72",
+      "37"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Abdurrahman",
+     "up_digits": [
+      "7",
+      "4",
+      "8"
+     ],
+     "up_sets": [
+      "782",
+      "176",
+      "716",
+      "617",
+      "780",
+      "890",
+      "795",
+      "882",
+      "467",
+      "764"
+     ],
+     "down_digits": [
+      "3",
+      "5"
+     ],
+     "down_pairs": [
+      "73",
+      "37",
+      "23"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Noyon",
+     "up_digits": [
+      "2",
+      "5",
+      "6"
+     ],
+     "up_sets": [
+      "256",
+      "525",
+      "624",
+      "531",
+      "631",
+      "266",
+      "554",
+      "446",
+      "544",
+      "996"
+     ],
+     "down_digits": [
+      "3",
+      "9"
+     ],
+     "down_pairs": [
+      "32",
+      "92",
+      "39"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Rohan",
+     "up_digits": [
+      "2",
+      "8",
+      "7"
+     ],
+     "up_sets": [
+      "386",
+      "558",
+      "655",
+      "682",
+      "895",
+      "588",
+      "288",
+      "685",
+      "642",
+      "957"
+     ],
+     "down_digits": [
+      "3",
+      "5"
+     ],
+     "down_pairs": [
+      "27",
+      "68",
+      "35"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Mehedi",
+     "up_digits": [
+      "6",
+      "5",
+      "1"
+     ],
+     "up_sets": [
+      "605",
+      "657",
+      "687",
+      "615",
+      "617",
+      "357",
+      "653",
+      "613",
+      "601",
+      "637"
+     ],
+     "down_digits": [
+      "6",
+      "2"
+     ],
+     "down_pairs": [
+      "63",
+      "62",
+      "65"
+     ],
+     "copy": false
+    },
+    {
+     "name": "DJ Alock",
+     "up_digits": [
+      "7",
+      "3",
+      "0"
+     ],
+     "up_sets": [
+      "735",
+      "789",
+      "773",
+      "077",
+      "778",
+      "389",
+      "030",
+      "387",
+      "475",
+      "693"
+     ],
+     "down_digits": [
+      "5",
+      "9"
+     ],
+     "down_pairs": [
+      "77",
+      "15",
+      "36"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Abdur Rahim",
+     "up_digits": [
+      "5",
+      "7",
+      "2"
+     ],
+     "up_sets": [
+      "622",
+      "264",
+      "464",
+      "764",
+      "768",
+      "266",
+      "787",
+      "477",
+      "473",
+      "462"
+     ],
+     "down_digits": [
+      "9",
+      "2"
+     ],
+     "down_pairs": [
+      "97",
+      "20"
+     ],
+     "copy": false
+    }
+   ]
+  },
+  {
+   "url": "https://www.thailotterysure.com/",
+   "name": "THAI LOTTERY FREE TIP THAI LOTTERY SURE 3UP NUMBER THAILAND LOTTERY 2026 – Thai ",
+   "ok": true,
+   "voices": [
+    {
+     "name": "Touch",
+     "up_digits": [
+      "1",
+      "0",
+      "4"
+     ],
+     "up_sets": [
+      "701",
+      "781",
+      "224"
+     ],
+     "down_digits": [],
+     "down_pairs": [],
+     "copy": false
+    },
+    {
+     "name": "Thai Lottery Sure",
+     "up_digits": [
+      "3",
+      "4"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [],
+     "copy": false
+    },
+    {
+     "name": "HTF Total Win",
+     "up_digits": [
+      "1",
+      "3",
+      "6",
+      "8",
+      "9"
+     ],
+     "up_sets": [
+      "701"
+     ],
+     "down_digits": [
+      "0",
+      "3",
+      "6",
+      "8",
+      "9"
+     ],
+     "down_pairs": [],
+     "copy": false
+    }
+   ]
+  },
+  {
+   "url": "https://thailandlotteryksa.com/",
+   "name": "🔴 LIVE: Thai Lottery Result Today (16 November 2026) | Fast Updates",
+   "ok": true,
+   "voices": []
+  },
+  {
+   "url": "https://www.sanook.com/news/tag/เลขเด็ด/",
+   "name": "ข่าวเลขเด็ด วันนี้ล่าสุด อัปเดตข่าวเลขเด็ด ล่าสุด",
+   "ok": true,
+   "voices": [
+    {
+     "name": "คำชะโนด",
+     "up_digits": [],
+     "up_sets": [
+      "369",
+      "362"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "62",
+      "35",
+      "50",
+      "69",
+      "27",
+      "28"
+     ],
+     "copy": false
+    },
+    {
+     "name": "ปฏิทินจีน",
+     "up_digits": [
+      "5",
+      "6",
+      "2",
+      "3"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [],
+     "copy": false
+    },
+    {
+     "name": "แปลปกสลาก",
+     "up_digits": [],
+     "up_sets": [
+      "874"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "74",
+      "87"
+     ],
+     "copy": false
+    },
+    {
+     "name": "ม้าสีหมอกบน",
+     "up_digits": [
+      "2",
+      "9"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "23",
+      "26",
+      "93",
+      "96"
+     ],
+     "copy": false
+    },
+    {
+     "name": "ม้าสีหมอกล่าง",
+     "up_digits": [],
+     "up_sets": [],
+     "down_digits": [
+      "5",
+      "7"
+     ],
+     "down_pairs": [
+      "52",
+      "56",
+      "72",
+      "76"
+     ],
+     "copy": false
+    },
+    {
+     "name": "ม้าสีหมอก",
+     "up_digits": [
+      "2",
+      "9"
+     ],
+     "up_sets": [],
+     "down_digits": [
+      "5",
+      "7"
+     ],
+     "down_pairs": [
+      "23",
+      "26",
+      "93",
+      "96",
+      "52",
+      "56",
+      "72",
+      "76"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Sanook",
+     "up_digits": [
+      "5",
+      "1",
+      "4",
+      "8",
+      "9"
+     ],
+     "up_sets": [],
+     "down_digits": [
+      "5",
+      "1",
+      "4",
+      "8",
+      "9"
+     ],
+     "down_pairs": [
+      "95",
+      "58"
+     ],
+     "copy": false
+    }
+   ]
+  }
+ ]
+}
