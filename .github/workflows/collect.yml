@@ -1,0 +1,32 @@
+name: Collect tips
+
+on:
+  schedule:
+    - cron: "0 2 * * *"   # rozana 07:00 Pakistan time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: collect
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python collect.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
+      - name: Save results
+        run: |
+          git config user.name "tips-bot"
+          git config user.email "tips-bot@users.noreply.github.com"
+          git add docs
+          git diff --cached --quiet || git commit -m "Update tips"
+          git push
