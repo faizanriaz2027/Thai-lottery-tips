@@ -2,41 +2,37 @@
  "draw_date": "2026-11-16",
  "status": "ready",
  "collect_from": "2026-11-10",
- "updated_at": "2026-11-11T09:55+07:00",
- "voices_total": 23,
- "voices_counted": 23,
+ "updated_at": "2026-11-11T17:18+07:00",
+ "voices_total": 29,
+ "voices_counted": 29,
  "top": {
   "up_digits": [
    {
     "n": "6",
-    "count": 9
-   },
-   {
-    "n": "9",
-    "count": 8
-   },
-   {
-    "n": "3",
-    "count": 7
+    "count": 11
    },
    {
     "n": "8",
-    "count": 7
+    "count": 11
    },
    {
-    "n": "2",
-    "count": 6
-   },
-   {
-    "n": "4",
-    "count": 6
+    "n": "9",
+    "count": 9
    },
    {
     "n": "5",
-    "count": 6
+    "count": 8
    },
    {
-    "n": "7",
+    "n": "2",
+    "count": 7
+   },
+   {
+    "n": "4",
+    "count": 7
+   },
+   {
+    "n": "3",
     "count": 6
    },
    {
@@ -44,8 +40,12 @@
     "count": 5
    },
    {
+    "n": "7",
+    "count": 5
+   },
+   {
     "n": "0",
-    "count": 3
+    "count": 4
    }
   ],
   "up_sets": [
@@ -54,7 +54,15 @@
     "count": 3
    },
    {
+    "n": "674",
+    "count": 3
+   },
+   {
     "n": "764",
+    "count": 3
+   },
+   {
+    "n": "780",
     "count": 3
    },
    {
@@ -62,7 +70,15 @@
     "count": 2
    },
    {
+    "n": "220",
+    "count": 2
+   },
+   {
     "n": "266",
+    "count": 2
+   },
+   {
+    "n": "273",
     "count": 2
    },
    {
@@ -72,31 +88,15 @@
    {
     "n": "588",
     "count": 2
-   },
-   {
-    "n": "605",
-    "count": 2
-   },
-   {
-    "n": "701",
-    "count": 2
-   },
-   {
-    "n": "716",
-    "count": 2
-   },
-   {
-    "n": "780",
-    "count": 2
    }
   ],
   "down_digits": [
    {
-    "n": "5",
+    "n": "3",
     "count": 6
    },
    {
-    "n": "3",
+    "n": "5",
     "count": 5
    },
    {
@@ -135,6 +135,22 @@
   "down_pairs": [
    {
     "n": "23",
+    "count": 4
+   },
+   {
+    "n": "52",
+    "count": 4
+   },
+   {
+    "n": "06",
+    "count": 3
+   },
+   {
+    "n": "28",
+    "count": 3
+   },
+   {
+    "n": "35",
     "count": 3
    },
    {
@@ -146,32 +162,16 @@
     "count": 3
    },
    {
+    "n": "62",
+    "count": 3
+   },
+   {
     "n": "72",
     "count": 3
    },
    {
-    "n": "76",
+    "n": "74",
     "count": 3
-   },
-   {
-    "n": "26",
-    "count": 2
-   },
-   {
-    "n": "27",
-    "count": 2
-   },
-   {
-    "n": "28",
-    "count": 2
-   },
-   {
-    "n": "32",
-    "count": 2
-   },
-   {
-    "n": "35",
-    "count": 2
    }
   ]
  },
@@ -272,6 +272,36 @@
      "copy": false
     },
     {
+     "name": "Nafees",
+     "up_digits": [
+      "5",
+      "8",
+      "6"
+     ],
+     "up_sets": [
+      "681",
+      "685",
+      "674",
+      "868",
+      "882",
+      "905",
+      "418",
+      "273",
+      "846",
+      "428"
+     ],
+     "down_digits": [
+      "3",
+      "9"
+     ],
+     "down_pairs": [
+      "84",
+      "16",
+      "52"
+     ],
+     "copy": false
+    },
+    {
      "name": "Ramzan",
      "up_digits": [
       "4",
@@ -362,7 +392,7 @@
      "copy": false
     },
     {
-     "name": "abbas",
+     "name": "Abbas",
      "up_digits": [
       "6",
       "3",
@@ -422,7 +452,7 @@
      "copy": false
     },
     {
-     "name": "noyon",
+     "name": "Noyon",
      "up_digits": [
       "2",
       "5",
@@ -510,36 +540,6 @@
       "65"
      ],
      "copy": false
-    },
-    {
-     "name": "DJ Alock",
-     "up_digits": [
-      "7",
-      "3",
-      "0"
-     ],
-     "up_sets": [
-      "735",
-      "789",
-      "773",
-      "077",
-      "778",
-      "389",
-      "030",
-      "387",
-      "475",
-      "693"
-     ],
-     "down_digits": [
-      "5",
-      "9"
-     ],
-     "down_pairs": [
-      "77",
-      "15",
-      "36"
-     ],
-     "copy": false
     }
    ]
   },
@@ -619,6 +619,27 @@
    "name": "ข่าวเลขเด็ด วันนี้ล่าสุด อัปเดตข่าวเลขเด็ด ล่าสุด",
    "ok": true,
    "voices": [
+    {
+     "name": "มหามงคล",
+     "up_digits": [],
+     "up_sets": [
+      "652",
+      "522",
+      "220",
+      "543",
+      "390",
+      "128"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "06",
+      "52",
+      "22",
+      "43",
+      "69"
+     ],
+     "copy": false
+    },
     {
      "name": "คำชะโนด",
      "up_digits": [],
@@ -742,6 +763,163 @@
      "copy": false
     }
    ]
+  },
+  {
+   "url": "https://thethaiger.com/th/check-lottery/lucky-number/",
+   "name": "เลขเด็ดงวดนี้ รวมเลขดัง เลขมงคลทุกสำนัก อัปเดตทุกงวด | Thaiger",
+   "ok": true,
+   "voices": [
+    {
+     "name": "ฟ้าบันดาลทรัพย์",
+     "up_digits": [
+      "5",
+      "0"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "51",
+      "54",
+      "35",
+      "75",
+      "02",
+      "06",
+      "90",
+      "80"
+     ],
+     "copy": false
+    },
+    {
+     "name": "อ.น๊อตตี้",
+     "up_digits": [
+      "6"
+     ],
+     "up_sets": [
+      "674",
+      "672"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "64",
+      "74",
+      "62",
+      "67",
+      "68"
+     ],
+     "copy": false
+    },
+    {
+     "name": "เสือตกถัง",
+     "up_digits": [
+      "8",
+      "0"
+     ],
+     "up_sets": [
+      "081",
+      "086",
+      "083",
+      "084",
+      "780",
+      "580",
+      "980",
+      "280"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "81",
+      "86",
+      "83",
+      "84",
+      "01",
+      "06"
+     ],
+     "copy": false
+    },
+    {
+     "name": "จอมยุทธพลังม้า",
+     "up_digits": [
+      "8"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "82",
+      "86"
+     ],
+     "copy": false
+    },
+    {
+     "name": "พระมหาประกาศิต",
+     "up_digits": [
+      "4",
+      "9",
+      "2",
+      "8"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "49",
+      "28",
+      "23"
+     ],
+     "copy": false
+    }
+   ]
+  },
+  {
+   "url": "https://www.lottoup.org/เลขเด็ด/",
+   "name": "www.lottoup.org",
+   "ok": false,
+   "voices": []
+  },
+  {
+   "url": "https://www.luangporpakdang.net/",
+   "name": "www.luangporpakdang.net",
+   "ok": false,
+   "voices": []
+  },
+  {
+   "url": "https://myhora.com/lottery/lucky-number.aspx",
+   "name": "เลขเด็ด 16/11/69 หวยเด็ด 16 พฤศจิกายน 2569 งวดนี้ - myhora.com",
+   "ok": true,
+   "voices": []
+  },
+  {
+   "url": "https://www.maneedee.com/lekded/",
+   "name": "www.maneedee.com",
+   "ok": false,
+   "voices": []
+  },
+  {
+   "url": "https://www.thailotteryup.com/",
+   "name": "www.thailotteryup.com",
+   "ok": false,
+   "voices": []
+  },
+  {
+   "url": "https://thairesults.com/champions",
+   "name": "thairesults.com",
+   "ok": false,
+   "voices": []
+  },
+  {
+   "url": "https://thairesults.com/4pc-chart-papers",
+   "name": "thairesults.com",
+   "ok": false,
+   "voices": []
+  },
+  {
+   "url": "https://thairesults.com/first-chart-papers",
+   "name": "thairesults.com",
+   "ok": false,
+   "voices": []
+  },
+  {
+   "url": "https://thairesults.com/last-chart-papers",
+   "name": "Thai Lottery Last Chart Paper 16 November 2026 | Final VIP Tips & Calculation Ch",
+   "ok": true,
+   "voices": []
   }
  ]
 }
