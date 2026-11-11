@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ur-Latn">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,30 +75,30 @@ footer{margin-top:1.5rem}
 <main>
   <header>
     <div class="ticket-top">
-      <p class="muted">Thai Lottery ka agla draw</p>
+      <p class="muted">Next Thai Lottery draw</p>
       <h1 id="drawDate">...</h1>
       <p id="countdown"></p>
     </div>
     <div class="ticket-bottom">
       <div class="picks" id="picks"></div>
-      <p class="muted" id="heroNote">Tips khul rahi hain...</p>
+      <p class="muted" id="heroNote">Loading tips...</p>
     </div>
   </header>
 
   <div id="tallies"></div>
 
   <section class="block" id="sourcesBlock" hidden>
-    <h2>Har source ki apni tips</h2>
+    <h2>Tips from each source</h2>
     <div id="sourceList"></div>
   </section>
 
   <section class="block" id="lastBlock" hidden>
-    <h2>Pichle draw mein kya hua</h2>
+    <h2>What happened in the last draw</h2>
     <div id="last"></div>
   </section>
 
   <footer class="muted">
-    Draw random hota hai. Yeh page sirf ginti dikhata hai ke kis number ko kitne logon ne bataya; jeet ki guarantee nahi.
+    The draw is random. This page only counts how many tipsters named each number; it cannot promise a win.
   </footer>
 </main>
 
@@ -116,6 +116,7 @@ const daysLeft = (iso) => {
   const [y, m, d] = iso.split("-").map(Number), n = new Date();
   return Math.round((Date.UTC(y, m - 1, d) - Date.UTC(n.getFullYear(), n.getMonth(), n.getDate())) / 864e5);
 };
+const tipsters = (n) => `${n} ${n === 1 ? "tipster" : "tipsters"}`;
 async function load(file, fallback) {
   try {
     const r = await fetch(file + "?t=" + Date.now());
@@ -130,7 +131,7 @@ function pick(label, item) {
   const row = el("div", "cells");
   row.setAttribute("aria-label", item.n);
   for (const ch of item.n) row.append(el("span", "cell", ch));
-  wrap.append(row, el("p", "stamp", `${item.count} ne bataya`));
+  wrap.append(row, el("p", "stamp", `Named by ${tipsters(item.count)}`));
   return wrap;
 }
 
@@ -139,7 +140,7 @@ function tallyBlock(title, items, total, minCount) {
   sec.append(el("h2", null, title));
   const rows = (items || []).filter((i) => i.count >= minCount);
   if (!rows.length) {
-    sec.append(el("p", "muted", "Abhi koi number do jagah ek jaisa nahi mila."));
+    sec.append(el("p", "muted", "No number has been named by two tipsters yet."));
     return sec;
   }
   const ol = el("ol", "rows");
@@ -147,7 +148,7 @@ function tallyBlock(title, items, total, minCount) {
     const li = el("li", "row"), bar = el("span", "bar"), fill = el("span", "fill");
     fill.style.width = Math.max(4, Math.round((it.count / total) * 100)) + "%";
     bar.append(fill);
-    li.append(el("span", "num", it.n), bar, el("span", "muted", `${it.count} ne`));
+    li.append(el("span", "num", it.n), bar, el("span", "muted", tipsters(it.count)));
     ol.append(li);
   }
   sec.append(ol);
@@ -166,21 +167,21 @@ function renderSources(sources) {
   for (const s of sources) {
     const d = el("details");
     const count = s.voices.length;
-    const status = !s.ok ? "data nahi mila" : count ? `${count} tips` : "is draw ki tip nahi mili";
+    const status = !s.ok ? "no data received" : count ? `${count} ${count === 1 ? "tip" : "tips"}` : "no tip found for this draw";
     const sum = el("summary", null, s.name + " ");
     sum.append(el("span", "muted", `(${status})`));
     d.append(sum);
     for (const v of s.voices) {
       const div = el("div", "voice");
       div.append(el("strong", null, v.name));
-      if (v.copy) div.append(el("span", "muted", " (kisi aur list jaisi hai, ginti mein shamil nahi)"));
-      for (const l of [line("Upar digits", v.up_digits), line("Upar sets", v.up_sets),
-                       line("Neeche digits", v.down_digits), line("Neeche pairs", v.down_pairs)]) {
+      if (v.copy) div.append(el("span", "muted", " (same as another list, not counted)"));
+      for (const l of [line("Upper digits", v.up_digits), line("Upper sets", v.up_sets),
+                       line("Lower digits", v.down_digits), line("Lower pairs", v.down_pairs)]) {
         if (l) div.append(l);
       }
       d.append(div);
     }
-    const p = el("p", "muted"), a = el("a", null, "Asal page kholein");
+    const p = el("p", "muted"), a = el("a", null, "Open the original page");
     a.href = s.url; a.target = "_blank"; a.rel = "noopener";
     p.append(a); d.append(p);
     box.append(d);
@@ -191,19 +192,19 @@ function renderSources(sources) {
 function renderLast(h) {
   if (!h) return;
   const box = $("last");
-  box.append(el("p", "muted", niceDate(h.draw_date) + " ka pehla inaam"));
+  box.append(el("p", "muted", "First prize, " + niceDate(h.draw_date)));
   box.append(el("p", "result", h.first_prize));
-  box.append(el("p", null, `Upar (3UP): ${h.up3}   Neeche: ${h.down2}`));
-  const yes = (b) => (b ? "laga" : "nahi laga");
-  box.append(el("p", null, `Sab se zyada bataya gaya number: upar ${yes(h.consensus.up)}, neeche ${yes(h.consensus.down)}.`));
+  box.append(el("p", null, `Upper (3UP): ${h.up3}   Lower: ${h.down2}`));
+  const yes = (b) => (b ? "hit" : "missed");
+  box.append(el("p", null, `Most-named numbers: upper ${yes(h.consensus.up)}, lower ${yes(h.consensus.down)}.`));
   const ul = el("ul", "hits");
   for (const s of h.sources) {
     const got = [];
-    if (s.up_exact) got.push("upar seedha laga");
-    else if (s.up_any_order) got.push("upar ulat-palat laga");
-    if (s.down) got.push("neeche laga");
+    if (s.up_exact) got.push("upper hit exactly");
+    else if (s.up_any_order) got.push("upper hit in a different order");
+    if (s.down) got.push("lower hit");
     const li = el("li", null, s.name + ": ");
-    li.append(el("span", "muted", got.length ? got.join(", ") : "kuch nahi laga"));
+    li.append(el("span", "muted", got.length ? got.join(", ") : "no hit"));
     ul.append(li);
   }
   box.append(ul);
@@ -214,31 +215,31 @@ function renderLast(h) {
   const [data, history] = await Promise.all([load("data.json", null), load("history.json", [])]);
   renderLast(history[0]);
   if (!data) {
-    $("drawDate").textContent = "Abhi data nahi aaya";
-    $("heroNote").textContent = "Collector abhi tak nahi chala. GitHub ke Actions tab se \"Collect tips\" chalayein.";
+    $("drawDate").textContent = "No data yet";
+    $("heroNote").textContent = "The collector has not run yet. Run \"Collect tips\" from the Actions tab on GitHub.";
     return;
   }
   $("drawDate").textContent = niceDate(data.draw_date);
   const n = daysLeft(data.draw_date);
-  $("countdown").textContent = n > 1 ? `${n} din baqi` : n === 1 ? "Kal draw hai" : n === 0 ? "Aaj draw hai" : "";
+  $("countdown").textContent = n > 1 ? `${n} days to go` : n === 1 ? "Draw is tomorrow" : n === 0 ? "Draw is today" : "";
 
   if (data.status !== "ready") {
-    $("heroNote").textContent = `Is draw ki tips ${niceDate(data.collect_from)} se jama hona shuru hongi.`;
+    $("heroNote").textContent = `Tips for this draw will start coming in from ${niceDate(data.collect_from)}.`;
     return;
   }
   const top = data.top, total = Math.max(1, data.voices_counted);
   const up = top.up_sets[0], down = top.down_pairs[0];
-  if (up && up.count >= 2) $("picks").append(pick("Upar (3UP) mein sab se zyada", up));
-  if (down && down.count >= 2) $("picks").append(pick("Neeche mein sab se zyada", down));
+  if (up && up.count >= 2) $("picks").append(pick("Most named for upper (3UP)", up));
+  if (down && down.count >= 2) $("picks").append(pick("Most named for lower", down));
   const okSources = data.sources.filter((s) => s.voices.length).length;
   const when = new Date(data.updated_at).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
-  $("heroNote").textContent = `${okSources} sources se ${data.voices_counted} tips gini gayi. Aakhri update: ${when}.`;
+  $("heroNote").textContent = `${data.voices_counted} tips counted from ${okSources} sources. Last update: ${when}.`;
 
   $("tallies").append(
-    tallyBlock("Upar (3UP) ke digits", top.up_digits, total, 1),
-    tallyBlock("Upar (3UP) ke sets", top.up_sets, total, 2),
-    tallyBlock("Neeche ke digits", top.down_digits, total, 1),
-    tallyBlock("Neeche ke pairs", top.down_pairs, total, 2)
+    tallyBlock("Upper (3UP) digits", top.up_digits, total, 1),
+    tallyBlock("Upper (3UP) sets", top.up_sets, total, 2),
+    tallyBlock("Lower digits", top.down_digits, total, 1),
+    tallyBlock("Lower pairs", top.down_pairs, total, 2)
   );
   renderSources(data.sources);
 })();
