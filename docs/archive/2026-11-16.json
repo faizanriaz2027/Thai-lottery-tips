@@ -2,67 +2,55 @@
  "draw_date": "2026-11-16",
  "status": "ready",
  "collect_from": "2026-11-10",
- "updated_at": "2026-11-13T10:17+07:00",
- "voices_total": 53,
- "voices_counted": 45,
+ "updated_at": "2026-11-14T10:13+07:00",
+ "voices_total": 45,
+ "voices_counted": 37,
  "top": {
   "up_digits": [
    {
+    "n": "1",
+    "count": 12
+   },
+   {
     "n": "6",
-    "count": 15
-   },
-   {
-    "n": "9",
-    "count": 15
-   },
-   {
-    "n": "2",
-    "count": 14
-   },
-   {
-    "n": "8",
-    "count": 14
-   },
-   {
-    "n": "4",
-    "count": 13
+    "count": 12
    },
    {
     "n": "7",
     "count": 12
    },
    {
-    "n": "1",
-    "count": 11
+    "n": "9",
+    "count": 12
    },
    {
-    "n": "3",
+    "n": "4",
     "count": 11
    },
    {
     "n": "5",
-    "count": 10
+    "count": 11
+   },
+   {
+    "n": "8",
+    "count": 11
    },
    {
     "n": "0",
-    "count": 9
+    "count": 8
+   },
+   {
+    "n": "2",
+    "count": 8
+   },
+   {
+    "n": "3",
+    "count": 7
    }
   ],
   "up_sets": [
    {
-    "n": "224",
-    "count": 3
-   },
-   {
-    "n": "617",
-    "count": 3
-   },
-   {
     "n": "674",
-    "count": 3
-   },
-   {
-    "n": "764",
     "count": 3
    },
    {
@@ -70,33 +58,41 @@
     "count": 2
    },
    {
-    "n": "034",
-    "count": 2
-   },
-   {
-    "n": "176",
-    "count": 2
-   },
-   {
-    "n": "214",
-    "count": 2
-   },
-   {
     "n": "220",
     "count": 2
    },
    {
-    "n": "266",
+    "n": "224",
+    "count": 2
+   },
+   {
+    "n": "273",
+    "count": 2
+   },
+   {
+    "n": "479",
+    "count": 2
+   },
+   {
+    "n": "543",
+    "count": 2
+   },
+   {
+    "n": "701",
+    "count": 2
+   },
+   {
+    "n": "761",
+    "count": 2
+   },
+   {
+    "n": "764",
     "count": 2
    }
   ],
   "down_digits": [
    {
-    "n": "3",
-    "count": 5
-   },
-   {
-    "n": "9",
+    "n": "6",
     "count": 5
    },
    {
@@ -104,15 +100,11 @@
     "count": 4
    },
    {
-    "n": "2",
+    "n": "3",
     "count": 4
    },
    {
-    "n": "5",
-    "count": 4
-   },
-   {
-    "n": "6",
+    "n": "9",
     "count": 4
    },
    {
@@ -120,57 +112,65 @@
     "count": 3
    },
    {
-    "n": "4",
+    "n": "2",
     "count": 3
+   },
+   {
+    "n": "4",
+    "count": 2
+   },
+   {
+    "n": "5",
+    "count": 2
    },
    {
     "n": "7",
-    "count": 3
+    "count": 2
    },
    {
     "n": "8",
-    "count": 3
+    "count": 2
    }
   ],
   "down_pairs": [
    {
     "n": "52",
-    "count": 9
-   },
-   {
-    "n": "29",
-    "count": 5
-   },
-   {
-    "n": "62",
-    "count": 5
+    "count": 8
    },
    {
     "n": "07",
     "count": 4
    },
    {
-    "n": "25",
+    "n": "59",
     "count": 4
    },
    {
-    "n": "32",
+    "n": "69",
     "count": 4
    },
    {
-    "n": "71",
-    "count": 4
-   },
-   {
-    "n": "72",
-    "count": 4
-   },
-   {
-    "n": "21",
+    "n": "56",
     "count": 3
    },
    {
-    "n": "23",
+    "n": "58",
+    "count": 3
+   },
+   {
+    "n": "62",
+    "count": 3
+   },
+   {
+    "n": "64",
+    "count": 3
+   },
+   {
+    "n": "71",
+    "count": 3
+   },
+   {
+    "n": "74",
     "count": 3
    }
   ]
@@ -182,7 +182,37 @@
    "ok": true,
    "voices": [
     {
-     "name": "Abdul",
+     "name": "MR Official",
+     "up_digits": [
+      "9",
+      "0",
+      "1"
+     ],
+     "up_sets": [
+      "841",
+      "861",
+      "048",
+      "086",
+      "914",
+      "916",
+      "094",
+      "096",
+      "948",
+      "928"
+     ],
+     "down_digits": [
+      "6",
+      "3"
+     ],
+     "down_pairs": [
+      "59",
+      "54",
+      "39"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Abdul latif",
      "up_digits": [
       "2",
       "7",
@@ -212,7 +242,37 @@
      "copy": false
     },
     {
-     "name": "MD TAREK",
+     "name": "Razu bhai",
+     "up_digits": [
+      "3",
+      "5",
+      "7"
+     ],
+     "up_sets": [
+      "719",
+      "520",
+      "750",
+      "769",
+      "589",
+      "550",
+      "778",
+      "590",
+      "543",
+      "552"
+     ],
+     "down_digits": [
+      "6",
+      "0"
+     ],
+     "down_pairs": [
+      "76",
+      "56",
+      "03"
+     ],
+     "copy": false
+    },
+    {
+     "name": "MD TAREK HASAN KAZI",
      "up_digits": [
       "6",
       "7",
@@ -242,7 +302,7 @@
      "copy": false
     },
     {
-     "name": "Hakeem",
+     "name": "Hakeem Muhammad Shafique",
      "up_digits": [
       "7",
       "6",
@@ -272,7 +332,7 @@
      "copy": false
     },
     {
-     "name": "Nafees",
+     "name": "Nafees Ahmad",
      "up_digits": [
       "5",
       "8",
@@ -302,7 +362,37 @@
      "copy": false
     },
     {
-     "name": "Ramzan",
+     "name": "gopal var",
+     "up_digits": [
+      "5",
+      "6",
+      "1"
+     ],
+     "up_sets": [
+      "265",
+      "756",
+      "556",
+      "511",
+      "611",
+      "775",
+      "575",
+      "667",
+      "776",
+      "997"
+     ],
+     "down_digits": [
+      "0",
+      "1"
+     ],
+     "down_pairs": [
+      "07",
+      "30",
+      "91"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Ramzan Mahis",
      "up_digits": [
       "4",
       "8",
@@ -362,7 +452,37 @@
      "copy": false
     },
     {
-     "name": "Rashed",
+     "name": "nurul haq",
+     "up_digits": [
+      "9",
+      "0",
+      "3"
+     ],
+     "up_sets": [
+      "931",
+      "907",
+      "937",
+      "917",
+      "903",
+      "107",
+      "137",
+      "990",
+      "110",
+      "993"
+     ],
+     "down_digits": [
+      "3",
+      "1"
+     ],
+     "down_pairs": [
+      "30",
+      "36",
+      "10"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Rashed Khan",
      "up_digits": [
       "7",
       "8",
@@ -390,154 +510,6 @@
       "37"
      ],
      "copy": false
-    },
-    {
-     "name": "abbas ail",
-     "up_digits": [
-      "6",
-      "3",
-      "9"
-     ],
-     "up_sets": [
-      "937",
-      "963",
-      "552",
-      "776",
-      "742",
-      "629",
-      "334",
-      "378",
-      "970",
-      "234"
-     ],
-     "down_digits": [
-      "4",
-      "3"
-     ],
-     "down_pairs": [
-      "53",
-      "29",
-      "63"
-     ],
-     "copy": false
-    },
-    {
-     "name": "Abdurrahman",
-     "up_digits": [
-      "7",
-      "4",
-      "8"
-     ],
-     "up_sets": [
-      "782",
-      "176",
-      "716",
-      "617",
-      "780",
-      "890",
-      "795",
-      "882",
-      "467",
-      "764"
-     ],
-     "down_digits": [
-      "3",
-      "5"
-     ],
-     "down_pairs": [
-      "73",
-      "37",
-      "23"
-     ],
-     "copy": false
-    },
-    {
-     "name": "Balamurali",
-     "up_digits": [
-      "9",
-      "0",
-      "7"
-     ],
-     "up_sets": [
-      "907",
-      "048",
-      "276",
-      "483",
-      "853",
-      "540",
-      "846",
-      "497",
-      "367",
-      "834"
-     ],
-     "down_digits": [
-      "8",
-      "6"
-     ],
-     "down_pairs": [
-      "62",
-      "29",
-      "07"
-     ],
-     "copy": false
-    },
-    {
-     "name": "NASIR KHAN",
-     "up_digits": [
-      "0",
-      "2",
-      "3"
-     ],
-     "up_sets": [
-      "224",
-      "034",
-      "614",
-      "604",
-      "202",
-      "617",
-      "817",
-      "324",
-      "342",
-      "560"
-     ],
-     "down_digits": [
-      "2",
-      "0"
-     ],
-     "down_pairs": [
-      "80",
-      "50",
-      "12"
-     ],
-     "copy": false
-    },
-    {
-     "name": "noyon khan",
-     "up_digits": [
-      "2",
-      "5",
-      "6"
-     ],
-     "up_sets": [
-      "256",
-      "525",
-      "624",
-      "531",
-      "631",
-      "266",
-      "554",
-      "446",
-      "544",
-      "996"
-     ],
-     "down_digits": [
-      "3",
-      "9"
-     ],
-     "down_pairs": [
-      "32"
-     ],
-     "copy": false
     }
    ]
   },
@@ -560,17 +532,6 @@
      "down_digits": [],
      "down_pairs": [],
      "copy": false
-    },
-    {
-     "name": "Thai Lottery Sure",
-     "up_digits": [
-      "3",
-      "4"
-     ],
-     "up_sets": [],
-     "down_digits": [],
-     "down_pairs": [],
-     "copy": false
     }
    ]
   },
@@ -585,6 +546,128 @@
    "name": "ข่าวเลขเด็ด วันนี้ล่าสุด อัปเดตข่าวเลขเด็ด ล่าสุด",
    "ok": true,
    "voices": [
+    {
+     "name": "Maenam Nuea",
+     "up_digits": [
+      "8",
+      "9",
+      "6"
+     ],
+     "up_sets": [
+      "896"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "89",
+      "86",
+      "96"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Nong Payu",
+     "up_digits": [],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "52"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Mahamongkol",
+     "up_digits": [],
+     "up_sets": [
+      "652",
+      "522",
+      "220",
+      "543",
+      "390",
+      "128"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "06",
+      "52",
+      "22",
+      "43",
+      "69",
+      "15"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Kamchanot",
+     "up_digits": [],
+     "up_sets": [
+      "369",
+      "362"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "62",
+      "35",
+      "50",
+      "69",
+      "27",
+      "28"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Pattikan Chin",
+     "up_digits": [
+      "5",
+      "6",
+      "2",
+      "3"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "16",
+      "12"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Plapok Salarak",
+     "up_digits": [
+      "7",
+      "4",
+      "8"
+     ],
+     "up_sets": [
+      "874"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "74",
+      "87"
+     ],
+     "copy": false
+    },
+    {
+     "name": "Maa Si Mok",
+     "up_digits": [
+      "2",
+      "9"
+     ],
+     "up_sets": [],
+     "down_digits": [
+      "5",
+      "7"
+     ],
+     "down_pairs": [
+      "23",
+      "26",
+      "93",
+      "96",
+      "52",
+      "56"
+     ],
+     "copy": false
+    },
     {
      "name": "Sanook",
      "up_digits": [
@@ -609,114 +692,6 @@
      "copy": false
     },
     {
-     "name": "น้องพายุ",
-     "up_digits": [],
-     "up_sets": [],
-     "down_digits": [],
-     "down_pairs": [
-      "52"
-     ],
-     "copy": false
-    },
-    {
-     "name": "มหามงคล",
-     "up_digits": [],
-     "up_sets": [
-      "652",
-      "522",
-      "220",
-      "543",
-      "390",
-      "128"
-     ],
-     "down_digits": [],
-     "down_pairs": [
-      "06",
-      "52",
-      "22",
-      "43",
-      "69",
-      "15"
-     ],
-     "copy": false
-    },
-    {
-     "name": "คำชะโนด",
-     "up_digits": [],
-     "up_sets": [
-      "369",
-      "362"
-     ],
-     "down_digits": [],
-     "down_pairs": [
-      "62",
-      "35",
-      "50",
-      "69",
-      "27",
-      "28"
-     ],
-     "copy": false
-    },
-    {
-     "name": "ปฏิทินจีน",
-     "up_digits": [
-      "5",
-      "6",
-      "2",
-      "3"
-     ],
-     "up_sets": [],
-     "down_digits": [],
-     "down_pairs": [],
-     "copy": false
-    },
-    {
-     "name": "แปลปกสลาก",
-     "up_digits": [],
-     "up_sets": [
-      "874"
-     ],
-     "down_digits": [],
-     "down_pairs": [
-      "74",
-      "87"
-     ],
-     "copy": false
-    },
-    {
-     "name": "ม้าสีหมอกบน",
-     "up_digits": [
-      "2",
-      "9"
-     ],
-     "up_sets": [],
-     "down_digits": [],
-     "down_pairs": [
-      "23",
-      "26",
-      "93",
-      "96"
-     ],
-     "copy": false
-    },
-    {
-     "name": "ม้าสีหมอกล่าง",
-     "up_digits": [],
-     "up_sets": [],
-     "down_digits": [
-      "5",
-      "7"
-     ],
-     "down_pairs": [
-      "52",
-      "56",
-      "72",
-      "76"
-     ],
-     "copy": false
-    },
-    {
      "name": "ม้าสีหมอก",
      "up_digits": [
       "2",
@@ -737,121 +712,63 @@
       "72",
       "76"
      ],
-     "copy": false
+     "copy": true
     }
    ]
   },
   {
    "url": "https://thethaiger.com/th/check-lottery/lucky-number/",
-   "name": "เลขเด็ดงวดนี้ รวมเลขดัง เลขมงคลทุกสำนัก อัปเดตทุกงวด | Thaiger",
-   "ok": true,
-   "voices": [
-    {
-     "name": "แม่น้ำหนึ่ง",
-     "up_digits": [
-      "8",
-      "9",
-      "6"
-     ],
-     "up_sets": [
-      "896"
-     ],
-     "down_digits": [],
-     "down_pairs": [
-      "89",
-      "86",
-      "96"
-     ],
-     "copy": false
-    },
-    {
-     "name": "หลวงปู่ศิลา",
-     "up_digits": [
-      "2",
-      "5",
-      "3",
-      "4",
-      "1"
-     ],
-     "up_sets": [
-      "253",
-      "534",
-      "143",
-      "214",
-      "352",
-      "421"
-     ],
-     "down_digits": [],
-     "down_pairs": [
-      "25",
-      "53",
-      "34",
-      "41",
-      "14",
-      "43",
-      "35",
-      "21",
-      "12",
-      "42"
-     ],
-     "copy": false
-    },
-    {
-     "name": "Dailynews",
-     "up_digits": [
-      "2",
-      "9",
-      "6",
-      "3",
-      "0"
-     ],
-     "up_sets": [],
-     "down_digits": [],
-     "down_pairs": [],
-     "copy": false
-    },
-    {
-     "name": "Thairath",
-     "up_digits": [
-      "4",
-      "0",
-      "2",
-      "1",
-      "8"
-     ],
-     "up_sets": [],
-     "down_digits": [],
-     "down_pairs": [],
-     "copy": false
-    },
-    {
-     "name": "BangkokToday",
-     "up_digits": [
-      "2",
-      "9",
-      "5",
-      "6",
-      "8"
-     ],
-     "up_sets": [],
-     "down_digits": [],
-     "down_pairs": [
-      "29",
-      "25",
-      "92",
-      "95",
-      "52",
-      "59"
-     ],
-     "copy": false
-    }
-   ]
+   "name": "thethaiger.com",
+   "ok": false,
+   "voices": []
   },
   {
    "url": "https://www.lottoup.org/เลขเด็ด/",
    "name": "เลขเด็ด หวยเด็ด อาจารย์ดังไทยรัฐงวดนี้ ทำนายฝัน แม่นๆ เข้าทุกงวด",
    "ok": true,
    "voices": [
+    {
+     "name": "คนดวงดี",
+     "up_digits": [
+      "5"
+     ],
+     "up_sets": [
+      "352",
+      "156",
+      "859"
+     ],
+     "down_digits": [
+      "6"
+     ],
+     "down_pairs": [
+      "52",
+      "56",
+      "59",
+      "62",
+      "64",
+      "69"
+     ],
+     "copy": false
+    },
+    {
+     "name": "ล้มหวยเถื่อน",
+     "up_digits": [
+      "5"
+     ],
+     "up_sets": [
+      "154",
+      "857"
+     ],
+     "down_digits": [
+      "9"
+     ],
+     "down_pairs": [
+      "09",
+      "39",
+      "69"
+     ],
+     "copy": false
+    },
     {
      "name": "โบแดง",
      "up_digits": [],
@@ -865,92 +782,14 @@
       "09"
      ],
      "copy": false
-    },
-    {
-     "name": "ซุปเปอร์แม่น",
-     "up_digits": [
-      "8"
-     ],
-     "up_sets": [
-      "689"
-     ],
-     "down_digits": [
-      "1"
-     ],
-     "down_pairs": [
-      "82",
-      "89",
-      "21",
-      "91"
-     ],
-     "copy": false
-    },
-    {
-     "name": "แป๊ะกง",
-     "up_digits": [
-      "3"
-     ],
-     "up_sets": [
-      "832",
-      "439"
-     ],
-     "down_digits": [
-      "6"
-     ],
-     "down_pairs": [
-      "32",
-      "39",
-      "62",
-      "65"
-     ],
-     "copy": false
     }
    ]
   },
   {
    "url": "https://www.luangporpakdang.net/",
-   "name": "เลขเด็ด หวยเด็ดงวดนี้ หวยไทยรัฐ แม่จำเนียร 16/11/69",
-   "ok": true,
-   "voices": [
-    {
-     "name": "ชวโรจน์",
-     "up_digits": [],
-     "up_sets": [],
-     "down_digits": [
-      "9",
-      "0",
-      "1"
-     ],
-     "down_pairs": [
-      "43",
-      "08",
-      "95",
-      "48",
-      "62",
-      "71"
-     ],
-     "copy": false
-    },
-    {
-     "name": "ชวโรจน์",
-     "up_digits": [],
-     "up_sets": [],
-     "down_digits": [
-      "9",
-      "0",
-      "1"
-     ],
-     "down_pairs": [
-      "43",
-      "08",
-      "95",
-      "48",
-      "62",
-      "71"
-     ],
-     "copy": true
-    }
-   ]
+   "name": "www.luangporpakdang.net",
+   "ok": false,
+   "voices": []
   },
   {
    "url": "https://myhora.com/lottery/lucky-number.aspx",
@@ -970,9 +809,9 @@
      "down_digits": [],
      "down_pairs": [
       "59",
+      "99",
       "25",
-      "52",
-      "29"
+      "52"
      ],
      "copy": false
     },
@@ -990,11 +829,11 @@
      "down_digits": [],
      "down_pairs": [
       "59",
+      "99",
       "25",
       "52",
       "29",
-      "92",
-      "69"
+      "92"
      ],
      "copy": false
     }
@@ -1005,6 +844,27 @@
    "name": "Thai Lottery 3UP Number Win Tips Free Thailand Lottery 2026 Thai Lotto Free Win ",
    "ok": true,
    "voices": [
+    {
+     "name": "Thai Lottery Up",
+     "up_digits": [
+      "1",
+      "4",
+      "2",
+      "0"
+     ],
+     "up_sets": [
+      "179",
+      "456",
+      "234",
+      "158",
+      "028",
+      "237",
+      "469"
+     ],
+     "down_digits": [],
+     "down_pairs": [],
+     "copy": false
+    },
     {
      "name": "Best Touch",
      "up_digits": [
