@@ -2,7 +2,7 @@ name: Collect tips
 
 on:
   schedule:
-    - cron: "0 2 * * *"   # rozana 07:00 Pakistan time
+  - cron: "0 2 * * *"   # rozana 07:00 Pakistan time
   workflow_dispatch:
 
 permissions:
