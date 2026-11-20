@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
-"""Thai lottery tips collector. Runs on GitHub Actions and writes docs/data.json."""
+"""Thai lottery tips collector. Runs on GitHub Actions and writes docs/data.json.
+
+Each run ADDS today's tips to the days already collected for the coming draw, then
+gives every number a total weight over all days. It also reads docs/results.csv
+(past results) and writes plain statistics from it."""
 import base64
+import csv
 import json
 import os
 import re
@@ -19,12 +24,20 @@ from bs4 import BeautifulSoup
 MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
 API_KEY = os.environ.get("GROQ_API_KEY", "")
 RESULT_URL = "https://news.sanook.com/lotto/"   # page used to read the official result
-START_DAYS_BEFORE = 6      # start collecting this many days before a draw
-MAX_LINKED_PAGES = 3       # tip posts to follow from each source page
-MAX_IMAGES = 2             # paper images read per page
-MAX_TEXT = 7000            # characters of page text sent to the AI
-MAX_OUT = 800              # answer size; Groq free plan allows 1000 output tokens a minute
-MIN_GAP = 62               # seconds between AI calls, to stay inside the free limit
+START_DAYS_BEFORE = 6     # start collecting this many days before a draw
+MAX_LINKED_PAGES = 3      # tip posts to follow from each source page
+MAX_IMAGES = 2            # paper images read per page
+MAX_TEXT = 7000           # characters of page text sent to the AI
+MAX_OUT = 800             # answer size; Groq free plan allows 1000 output tokens a minute
+MIN_GAP = 62              # seconds between AI calls, to stay inside the free limit
+
+# Total weight of a number = W_TIPSTER x tipsters + W_SITE x websites + W_DAY x days
+W_TIPSTER = 3             # every different tipster that gave the number
+W_SITE = 2                # every different website it appeared on
+W_DAY = 1                 # every different day it appeared
+TOP_N = 10                # numbers kept in each list
+HOT_WINDOW = 30           # past draws used for the "hot digits" statistics
+
 # Draws moved off the 1st/16th (holidays): "usual date": "actual date"
 DRAW_OVERRIDES = {
     # "2027-01-01": "2026-12-30",
@@ -32,6 +45,9 @@ DRAW_OVERRIDES = {
 
 ROOT = Path(__file__).parent
 DOCS = ROOT / "docs"
+RESULTS_CSV = DOCS / "results.csv"   # past results, newest first
+FIELDS = ["date", "first", "front1", "front2", "back1", "back2", "official2"]
+CATS = ("up_digits", "up_sets", "down_digits", "down_pairs")
 BKK = ZoneInfo("Asia/Bangkok")
 UA = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -176,9 +192,9 @@ def ask_ai(system, content, max_tokens=MAX_OUT):
         except Exception as e:
             raise AIError(f"AI request failed: {e}")
         if r.status_code == 400 and "reasoning" in r.text.lower() and "reasoning_effort" in body:
-            body.pop("reasoning_effort")          # this model does not take the setting
+            body.pop("reasoning_effort")   # this model does not take the setting
             continue
-        if r.status_code == 429 and attempt < 5:  # free limit hit: wait and try again
+        if r.status_code == 429 and attempt < 5:   # free limit hit: wait and try again
             print("AI limit hit, waiting:", r.text[:200])
             time.sleep(20)
             continue
@@ -247,27 +263,169 @@ def collect_source(url, draw, rx):
     return (title or host)[:80], voices
 
 
-# ---------------- counting ----------------
+# ---------------- counting over all days ----------------
+def pool(days):
+    """Every tip list of every day, oldest day first, marked with its day and website."""
+    out = []
+    for d in days:
+        for s in d["sources"]:
+            for v in s["voices"]:
+                v["day"], v["src"] = d["date"], s["url"]
+                out.append(v)
+    return out
+
+
 def mark_copies(voices):
-    """A list that is almost the same as an earlier one is counted only once."""
+    """A list that is almost the same as an earlier counted list is counted only once.
+    The same website on a later day is not compared here; tally() takes care of that."""
     for i, v in enumerate(voices):
+        v["copy"] = False
         a = set(v["up_sets"]) | set(v["down_pairs"])
         if len(a) < 5:
             continue
         for w in voices[:i]:
+            if w["copy"] or (w["src"] == v["src"] and w["day"] != v["day"]):
+                continue
             b = set(w["up_sets"]) | set(w["down_pairs"])
             if len(b) >= 5 and len(a & b) / len(a | b) >= 0.6:
                 v["copy"] = True
                 break
 
 
-def tally(voices, key, top=10):
-    c = Counter()
+def tally(voices, key, top=TOP_N):
+    """Total weight of every number. A page that stays the same for several days is not
+    counted again: for each website we take its best single day."""
+    all_days = sorted({v["day"] for v in voices})
+    per = {}   # number -> website -> day -> lists that gave it
     for v in voices:
         if not v["copy"]:
-            c.update(set(v[key]))
-    ranked = sorted(c.items(), key=lambda t: (-t[1], t[0]))[:top]
-    return [{"n": n, "count": k} for n, k in ranked]
+            for n in set(v[key]):
+                per.setdefault(n, {}).setdefault(v["src"], Counter())[v["day"]] += 1
+    rows = []
+    for n, sites in per.items():
+        by_day = Counter()
+        for c in sites.values():
+            by_day.update(c)
+        tipsters = sum(max(c.values()) for c in sites.values())
+        rows.append({
+            "n": n, "count": tipsters, "sites": len(sites), "days": len(by_day),
+            "weight": W_TIPSTER * tipsters + W_SITE * len(sites) + W_DAY * len(by_day),
+            "first_seen": min(by_day),
+            "new": len(all_days) > 1 and min(by_day) == all_days[-1],
+            "by_day": {d: by_day.get(d, 0) for d in all_days},
+        })
+    rows.sort(key=lambda r: (-r["weight"], -r["count"], r["n"]))
+    best = rows[0]["weight"] if rows else 1
+    for r in rows:
+        r["rating"] = round(100 * r["weight"] / best)
+    return rows[:top]
+
+
+def merged_sources(days):
+    """One entry per website with every different tip list it gave over the days."""
+    out, seen = {}, set()
+    for d in days:
+        for s in d["sources"]:
+            m = out.setdefault(s["url"], {"url": s["url"], "name": s["name"], "ok": False, "voices": []})
+            if s["ok"]:
+                m["ok"], m["name"] = True, s["name"]
+            for v in s["voices"]:
+                key = (s["url"], v["name"], *(tuple(v[k]) for k in CATS))
+                if key not in seen:
+                    seen.add(key)
+                    m["voices"].append(v)
+    return list(out.values())
+
+
+# ---------------- past results (docs/results.csv) ----------------
+def load_results():
+    """Past results, oldest first. Results the app saved itself are added to the CSV."""
+    rows = {}
+    if RESULTS_CSV.exists():
+        with RESULTS_CSV.open(encoding="utf-8-sig", newline="") as f:
+            for raw in csv.DictReader(f):
+                r = {k: (raw.get(k) or "").strip() for k in FIELDS}
+                if not (re.fullmatch(r"\d{4}-\d{2}-\d{2}", r["date"])
+                        and r["first"].isdigit() and r["official2"].isdigit()):
+                    continue
+                r["first"], r["official2"] = r["first"].zfill(6), r["official2"].zfill(2)
+                rows[r["date"]] = r
+    added = False
+    for h in load(DOCS / "history.json", []):
+        d = h.get("draw_date")
+        if d and d not in rows and h.get("first_prize") and h.get("down2"):
+            rows[d] = dict.fromkeys(FIELDS, "") | {"date": d, "first": h["first_prize"], "official2": h["down2"]}
+            added = True
+    out = [rows[d] for d in sorted(rows)]
+    if added:
+        with RESULTS_CSV.open("w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, FIELDS)
+            w.writeheader()
+            w.writerows(reversed(out))
+        print("results.csv updated,", len(out), "draws")
+    return out
+
+
+def history_tips(results):
+    """Plain statistics from past results. They describe the past and cannot tell the next
+    draw, so a walk-through test (hit % against pure chance %) is saved next to them."""
+    if len(results) < HOT_WINDOW + 20:
+        return {"draws": len(results)}
+    ups = [r["first"][-3:] for r in results]
+    downs = [r["official2"] for r in results]
+
+    def hot(nums):          # the 3 digits seen most in the last HOT_WINDOW draws
+        recent = nums[-HOT_WINDOW:]
+        return sorted("0123456789", key=lambda d: (-sum(d in x for x in recent), d))[:3]
+
+    def top_pairs(nums):    # the 6 pairs that came most often so far
+        c = Counter(nums)
+        return sorted(c, key=lambda n: (-c[n], n))[:6]
+
+    def digits(nums):
+        rows = []
+        for d in "0123456789":
+            gap = next((i for i, x in enumerate(reversed(nums)) if d in x), len(nums))
+            rows.append({"n": d, "recent": sum(d in x for x in nums[-HOT_WINDOW:]),
+                         "all": sum(d in x for x in nums), "gap": gap})
+        return rows
+
+    def test(nums, pick):   # pick from the draws before each draw, then check that draw
+        picks = hits = 0
+        for i in range(HOT_WINDOW, len(nums)):
+            for p in pick(nums[:i]):
+                picks += 1
+                hits += p in nums[i]
+        return round(100 * hits / picks, 1)
+
+    c = Counter(downs)
+    last = {r["official2"]: r["date"] for r in results}
+    return {
+        "draws": len(results), "from": results[0]["date"], "to": results[-1]["date"],
+        "window": HOT_WINDOW,
+        "up_digits": digits(ups), "down_digits": digits(downs),
+        "hot_up_digits": hot(ups), "hot_down_digits": hot(downs),
+        "top_down_pairs": [{"n": n, "times": c[n], "last": last[n]} for n in top_pairs(downs)],
+        "test": {
+            "hot_up_digits": {"hit": test(ups, hot), "chance": 27.1},
+            "hot_down_digits": {"hit": test(downs, hot), "chance": 19.0},
+            "top_down_pairs": {"hit": test(downs, top_pairs), "chance": 1.0},
+        },
+    }
+
+
+def add_past(top, results):
+    """Next to every tipped number: how often it really came in the past results."""
+    ups = [(r["date"], r["first"][-3:]) for r in results]
+    downs = [(r["date"], r["official2"]) for r in results]
+    for key, rows in top.items():
+        past = ups if key.startswith("up") else downs
+        exact = key in ("up_sets", "down_pairs")
+        for t in rows:
+            hit = [d for d, x in past if (x == t["n"] if exact else t["n"] in x)]
+            t["past"] = {"times": len(hit), "last": hit[-1] if hit else "", "of": len(past)}
+            if key == "up_sets":
+                t["past"]["any_order"] = sum(sorted(x) == sorted(t["n"]) for _, x in past)
 
 
 # ---------------- result of the last draw ----------------
@@ -315,13 +473,15 @@ def update_history(prev):
 def main():
     if not API_KEY:
         sys.exit("GROQ_API_KEY is missing")
-    today = datetime.now(BKK).date()
+    now = datetime.now(BKK)
+    today = now.date()
     dates = draw_dates_around(today)
     nxt = next(d for d in dates if d >= today)
     prev = max(d for d in dates if d < today)
     (DOCS / "archive").mkdir(parents=True, exist_ok=True)
     data_path = DOCS / "data.json"
     old = load(data_path, {})
+    same_draw = old.get("draw_date") == nxt.isoformat()
 
     if (today - prev).days <= 4:
         try:
@@ -329,24 +489,37 @@ def main():
         except Exception as e:
             print("Result check failed:", e)
 
+    results = load_results()
+    stats = history_tips(results)
+
     collect_from = nxt - timedelta(days=START_DAYS_BEFORE)
     if today < collect_from and os.environ.get("FORCE") != "1":
-        if old.get("draw_date") != nxt.isoformat():
-            save(data_path, {"draw_date": nxt.isoformat(), "status": "waiting",
-                             "collect_from": collect_from.isoformat(), "sources": []})
+        if not same_draw:
+            old = {"draw_date": nxt.isoformat(), "status": "waiting",
+                   "collect_from": collect_from.isoformat(), "sources": [], "days": []}
+        old["history_tips"] = stats
+        save(data_path, old)
         print("Too early; collection starts", collect_from)
         return
+
+    # days already collected for this draw are kept; today's run is added to them
+    days = []
+    if same_draw:
+        days = old.get("days") or []
+        if not days and old.get("voices_total"):   # file written by the older version
+            days = [{"date": old.get("updated_at", "")[:10] or today.isoformat(),
+                     "updated_at": old.get("updated_at", ""), "sources": old.get("sources", [])}]
 
     rx = date_regex(nxt)
     urls = [normalise(l) for l in (ROOT / "sources.txt").read_text("utf-8").splitlines()
             if l.strip() and not l.strip().startswith("#")]
-    sources, all_voices, ai_errors = [], [], []
+    sources, found, ai_errors = [], 0, []
     for url in urls:
         print("Reading", url)
         try:
             name, voices = collect_source(url, nxt, rx)
             sources.append({"url": url, "name": name, "ok": True, "voices": voices})
-            all_voices += voices
+            found += len(voices)
         except AIError as e:
             print("  AI FAILED:", e)
             ai_errors.append(str(e))
@@ -355,26 +528,46 @@ def main():
             print("  FAILED:", e)
             sources.append({"url": url, "name": urlparse(url).netloc, "ok": False, "voices": []})
 
-    if not all_voices:
-        if ai_errors:
-            sys.exit("AI did not answer for any source: " + ai_errors[0])
-        if old.get("draw_date") == nxt.isoformat() and old.get("voices_total"):
-            print("Nothing found this run; keeping the earlier data")
-            return
+    if not found and ai_errors:
+        sys.exit("AI did not answer for any source: " + ai_errors[0])
 
-    mark_copies(all_voices)
+    today_iso = today.isoformat()
+    if found:
+        earlier = next((d for d in days if d["date"] == today_iso), None)
+        if earlier:   # second run on the same day: a source that fails now keeps what it gave earlier
+            kept = {s["url"]: s for s in earlier["sources"] if s["voices"]}
+            sources = [s if s["voices"] else kept.get(s["url"], s) for s in sources]
+        days = [d for d in days if d["date"] != today_iso]
+        days.append({"date": today_iso, "updated_at": now.isoformat(timespec="minutes"), "sources": sources})
+        days.sort(key=lambda d: d["date"])
+    else:
+        print("Nothing found this run; the earlier days are kept as they are")
+
+    voices = pool(days)
+    mark_copies(voices)
+    top = {k: tally(voices, k) for k in CATS}
+    add_past(top, results)
+    for d in days:   # each day's own idea, shown next to the total
+        dv = [v for v in voices if v["day"] == d["date"]]
+        d["voices_total"] = len(dv)
+        d["top"] = {k: tally(dv, k, 5) for k in CATS}
+
     data = {
         "draw_date": nxt.isoformat(), "status": "ready",
         "collect_from": collect_from.isoformat(),
-        "updated_at": datetime.now(BKK).isoformat(timespec="minutes"),
-        "voices_total": len(all_voices),
-        "voices_counted": sum(not v["copy"] for v in all_voices),
-        "top": {k: tally(all_voices, k) for k in ("up_digits", "up_sets", "down_digits", "down_pairs")},
-        "sources": sources,
+        "updated_at": now.isoformat(timespec="minutes"),
+        "days_collected": [d["date"] for d in days],
+        "voices_total": len(voices),
+        "voices_counted": sum(not v["copy"] for v in voices),
+        "weights": {"tipster": W_TIPSTER, "site": W_SITE, "day": W_DAY},
+        "top": top,
+        "days": days,
+        "sources": merged_sources(days),
+        "history_tips": stats,
     }
     save(data_path, data)
     save(DOCS / "archive" / f"{nxt.isoformat()}.json", data)
-    print(f"Done: {len(all_voices)} tips from {len(sources)} sources")
+    print(f"Done: {len(voices)} tips over {len(days)} day(s)")
 
 
 if __name__ == "__main__":
