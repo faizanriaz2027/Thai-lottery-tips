@@ -24,7 +24,7 @@ from bs4 import BeautifulSoup
 MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")
 API_KEY = os.environ.get("GROQ_API_KEY", "")
 RESULT_URL = "https://news.sanook.com/lotto/"   # page used to read the official result
-START_DAYS_BEFORE = 6     # start collecting this many days before a draw
+START_DAYS_BEFORE = 30    # 30 = collect every day (draws are never more than 17 days apart)
 MAX_LINKED_PAGES = 3      # tip posts to follow from each source page
 MAX_IMAGES = 2            # paper images read per page
 MAX_TEXT = 7000           # characters of page text sent to the AI
