@@ -9,28 +9,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#DDEBE4; --card:#FCFEFD; --ink:#12304A; --soft:#56707A;
-  --stamp:#C4122F; --bar:#2B7A62; --line:#D5E2DC;
+  --paper:#DDEBE4; --card:#FCFEFD; --ink:#12304A; --soft:#4A636D;
+  --stamp:#C4122F; --bar:#2B7A62; --mint:#9CC9B8; --gold:#F2B632; --line:#D5E2DC;
   --num:"Chakra Petch",sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 1.125rem/1.6 Sarabun,system-ui,sans-serif}
-main{max-width:34rem;margin:0 auto;padding:1rem 1rem 3rem}
-h1,h2,p{margin:0}
-h1{font:700 clamp(1.9rem,8.5vw,2.6rem)/1.1 var(--num)}
-h2{font:700 1.35rem/1.2 var(--num);margin-bottom:.75rem}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.55 Sarabun,system-ui,sans-serif}
+main{max-width:68rem;margin:0 auto;padding:1rem 1rem 3rem;display:grid;gap:1rem}
+main>*{min-width:0}
+main>section,#totals{scroll-margin-top:4rem}
+h1,h2,h3,p{margin:0}
+h1{font:700 clamp(2rem,7vw,3.1rem)/1.05 var(--num)}
+h2{font:700 1.35rem/1.2 var(--num);margin-bottom:.6rem}
+h3{font:700 1.05rem/1.25 var(--num)}
 a{color:var(--ink)}
-.muted{color:var(--soft);font-size:1rem}
+.muted{color:var(--soft);font-size:.97rem}
+summary:focus-visible,a:focus-visible{outline:3px solid var(--stamp);outline-offset:3px}
 
-.ticket-top,.ticket-bottom{padding:1.25rem 1.5rem}
-.ticket-top{
+/* ticket */
+.ticket{display:grid}
+.ticket-main,.ticket-stub{padding:1.4rem 1.5rem}
+.ticket-main{
   border-radius:14px 14px 0 0;
   background:
     radial-gradient(circle at 0 100%,var(--paper) 11px,transparent 12px),
     radial-gradient(circle at 100% 100%,var(--paper) 11px,transparent 12px),
+    repeating-radial-gradient(circle at 88% -30%,transparent 0 10px,rgba(18,48,74,.05) 10px 11px),
     var(--card);
 }
-.ticket-bottom{
+.ticket-stub{
   border-radius:0 0 14px 14px;
   background:
     radial-gradient(circle at 0 0,var(--paper) 11px,transparent 12px),
@@ -38,89 +47,171 @@ a{color:var(--ink)}
     linear-gradient(90deg,var(--soft) 55%,transparent 0) 0 0/14px 2px repeat-x,
     var(--card);
 }
-#countdown{font:500 1.25rem/1.3 var(--num);color:var(--stamp);margin-top:.35rem}
+@media (min-width:52rem){
+  .ticket{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+  .ticket-main{
+    border-radius:14px 0 0 14px;padding:2rem 2rem;
+    background:
+      radial-gradient(circle at 100% 0,var(--paper) 11px,transparent 12px),
+      radial-gradient(circle at 100% 100%,var(--paper) 11px,transparent 12px),
+      repeating-radial-gradient(circle at 88% -30%,transparent 0 10px,rgba(18,48,74,.05) 10px 11px),
+      var(--card);
+  }
+  .ticket-stub{
+    border-radius:0 14px 14px 0;padding:2rem 2rem;
+    background:
+      radial-gradient(circle at 0 0,var(--paper) 11px,transparent 12px),
+      radial-gradient(circle at 0 100%,var(--paper) 11px,transparent 12px),
+      linear-gradient(0deg,var(--soft) 55%,transparent 0) 0 0/2px 14px repeat-y,
+      var(--card);
+  }
+}
+#countdown{font:500 1.25rem/1.3 var(--num);color:var(--stamp);margin-top:.4rem}
 .picks{display:flex;flex-wrap:wrap;gap:1.25rem 2rem;margin-bottom:.75rem}
+.picks:empty{display:none}
 .cells{display:flex;gap:.35rem;margin:.25rem 0 .6rem}
 .cell{
   font:700 clamp(2.6rem,13vw,3.75rem)/1 var(--num);
   min-width:1.15em;padding:.16em 0 .12em;text-align:center;
   border:2px solid var(--ink);border-radius:6px;background:#fff;
 }
+.cells.sm .cell{font-size:clamp(1.6rem,7vw,2.1rem)}
+.cell.on{background:var(--ink);color:#fff}
 .stamp{
   display:inline-block;font:700 1rem/1 var(--num);color:var(--stamp);
   border:2px solid var(--stamp);border-radius:4px;padding:.3em .55em;transform:rotate(-3deg);
 }
-.picks .muted{margin-top:.4rem}
+.pickmeta{margin-top:.45rem}
 
-.block{background:var(--card);border-radius:14px;padding:1.25rem 1.5rem;margin-top:1rem}
-.rows{list-style:none;margin:0;padding:0}
-.row{display:grid;grid-template-columns:4.5rem 1fr auto;align-items:center;gap:.1rem .75rem;padding:.55rem 0;border-top:1px solid var(--line)}
-.row:first-child{border-top:0}
-.row .sub{grid-column:1/-1;color:var(--soft);font-size:.92rem;line-height:1.45}
-.num{font:700 1.6rem/1 var(--num);letter-spacing:.04em}
-.bar{height:.6rem;background:#E3EDE8;border-radius:99px;overflow:hidden}
-.fill{display:block;height:100%;background:var(--bar);border-radius:99px}
-.tag{
-  display:inline-block;font:700 .72rem/1 var(--num);color:var(--stamp);
-  border:1.5px solid var(--stamp);border-radius:3px;padding:.2em .4em;margin-right:.45rem;vertical-align:.08em;
+/* jump menu */
+.jump{position:sticky;top:0;z-index:2;display:flex;gap:.4rem;overflow-x:auto;padding:.55rem 0;background:var(--paper)}
+.jump a{
+  flex:none;font:500 .95rem/1 var(--num);text-decoration:none;
+  padding:.55em .85em;border:1.5px solid var(--ink);border-radius:99px;background:var(--card);
 }
 
-details{border-top:1px solid var(--line);padding:.6rem 0}
-details:first-of-type{border-top:0}
-summary{cursor:pointer;font-weight:600}
-summary:focus-visible,a:focus-visible{outline:3px solid var(--stamp);outline-offset:3px}
+/* blocks and lists */
+.block{background:var(--card);border-radius:14px;padding:1.25rem 1.1rem}
+@media (min-width:52rem){.block{padding:1.5rem 1.6rem}}
+#totals{display:grid;gap:.75rem}
+.boards,.pair{display:grid;gap:1rem;align-items:start;grid-template-columns:repeat(auto-fit,minmax(min(100%,24rem),1fr))}
+.legend .sq{display:inline-block;vertical-align:-.05em;margin-left:.3rem}
+
+.rowgrid{display:grid;grid-template-columns:1.2rem 4.3rem minmax(0,1fr) 3.2rem .7rem;gap:.6rem;align-items:center}
+.rowhead{font-size:.85rem;color:var(--soft);padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+.rowhead span:nth-child(4){text-align:right}
+.row{border-top:1px solid var(--line);padding:.6rem 0}
+.rowhead + .row{border-top:0}
+.row>summary{cursor:pointer;list-style:none;border-radius:4px}
+.row>summary::-webkit-details-marker{display:none}
+.rank{font:500 .9rem/1 var(--num);color:var(--soft)}
+.num{font:700 1.6rem/1 var(--num);letter-spacing:.04em}
+.lead .num{border:2px solid var(--ink);border-radius:6px;background:#fff;padding:.22em 0 .18em;text-align:center}
+.bar{display:block;height:.55rem;background:#E3EDE8;border-radius:99px;overflow:hidden}
+.fill{display:block;height:100%;background:var(--bar);border-radius:99px;transform-origin:left}
+@media (prefers-reduced-motion:no-preference){.fill{animation:grow .7s cubic-bezier(.2,.7,.2,1) both}}
+@keyframes grow{from{transform:scaleX(0)}}
+.under{display:flex;align-items:center;flex-wrap:wrap;gap:.3rem 0;margin-top:.4rem;min-height:.7rem}
+.strip{display:inline-flex;gap:3px;flex-wrap:wrap}
+.sq{width:.62rem;height:.62rem;border-radius:2px;border:1.5px solid #B9CCC4}
+.sq.l1{background:var(--mint);border-color:var(--mint)}
+.sq.l2{background:var(--bar);border-color:var(--bar)}
+.sq.l3{background:var(--ink);border-color:var(--ink)}
+.wt{font:700 1.15rem/1 var(--num);text-align:right}
+.chev{width:.5rem;height:.5rem;border-right:2px solid var(--soft);border-bottom:2px solid var(--soft);transform:rotate(45deg);transition:transform .15s}
+.row[open] .chev{transform:rotate(-135deg)}
+.sub{color:var(--soft);font-size:.95rem;margin:.4rem 0 0 1.8rem}
+.tag{
+  display:inline-block;font:700 .72rem/1 var(--num);background:var(--gold);color:var(--ink);
+  border-radius:3px;padding:.28em .45em;margin-left:.45rem;vertical-align:.12em;
+}
+
+/* day by day slips */
+.slips{display:flex;gap:.75rem;overflow-x:auto;padding:.25rem 0 .6rem;scroll-snap-type:x proximity}
+.slip{
+  flex:0 0 13.5rem;scroll-snap-align:start;background:#fff;
+  border:1.5px solid var(--ink);border-top:2px dashed var(--ink);border-radius:8px;padding:.8rem .9rem;
+}
+.slip dl{margin:.4rem 0 0}
+.slip dt{color:var(--soft);font-size:.9rem;margin-top:.5rem}
+.slip dd{margin:0}
+.chip{
+  display:inline-flex;align-items:baseline;gap:.25em;font:700 1.05rem/1 var(--num);
+  padding:.3em .5em;border:1.5px solid var(--line);border-radius:6px;margin:.25rem .3rem 0 0;background:#fff;
+}
+.chip small{font:500 .8rem/1 var(--num);color:var(--soft)}
+
+/* sources */
+.src{border-top:1px solid var(--line);padding:.6rem 0}
+.src:first-child{border-top:0}
+.src>summary{cursor:pointer;font-weight:600}
 .voice{margin:.7rem 0 0;padding-left:.9rem;border-left:3px solid var(--line)}
 .voice strong{font-weight:600}
 .digits{font-family:var(--num);letter-spacing:.03em;overflow-wrap:anywhere}
-.result{font:700 2rem/1.1 var(--num);letter-spacing:.06em;margin:.25rem 0 .5rem}
-.hits{list-style:none;margin:.75rem 0 0;padding:0}
-.hits li{border-top:1px solid var(--line);padding:.45rem 0}
 
-.tbl{width:100%;border-collapse:collapse;margin-top:.5rem;font-size:1rem}
-.tbl th,.tbl td{text-align:left;padding:.3rem .5rem .3rem 0;border-top:1px solid var(--line)}
+/* past results */
+.pastgrid{display:grid;gap:1.25rem;margin:.75rem 0 .5rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}
+.chart{display:grid;grid-template-columns:repeat(10,1fr);gap:.3rem;margin-top:.5rem}
+.col{display:grid;justify-items:center;gap:.15rem}
+.colwrap{display:flex;align-items:flex-end;width:100%;height:4.5rem}
+.colbar{display:block;width:100%;min-height:2px;background:var(--mint);border-radius:3px 3px 0 0}
+.hot .colbar{background:var(--stamp)}
+.cnt,.gapn{font-size:.8rem;line-height:1.2;color:var(--soft)}
+.dg{font:700 1.2rem/1 var(--num)}
+.hot .dg{color:var(--stamp)}
+.part{margin-top:1.1rem}
+.tbl{width:100%;border-collapse:collapse;margin-top:.4rem;font-size:1rem}
+.tbl th,.tbl td{text-align:left;padding:.35rem .6rem .35rem 0;border-top:1px solid var(--line)}
 .tbl th{border-top:0;color:var(--soft);font-weight:600;font-size:.9rem}
-.tbl .num{font-size:1.25rem}
-.tbl .hot td{color:var(--stamp);font-weight:600}
-.gap{margin-top:.6rem}
-footer{margin-top:1.5rem}
+.tbl td:not(:first-child){font-family:var(--num);font-weight:700}
+
+/* last draw */
+.prize{display:flex;flex-wrap:wrap;gap:.5rem 2rem;margin:.5rem 0 .25rem}
+.hits{list-style:none;margin:.75rem 0 0;padding:0}
+.hits li{display:flex;justify-content:space-between;gap:1rem;border-top:1px solid var(--line);padding:.45rem 0}
+.hits .ok{color:var(--bar);font-weight:600;text-align:right}
+.hits .no{color:var(--soft);text-align:right}
+footer{margin-top:.5rem}
 </style>
 </head>
 <body>
 <main>
-  <header>
-    <div class="ticket-top">
+  <header class="ticket">
+    <div class="ticket-main">
       <p class="muted">Next Thai Lottery draw</p>
       <h1 id="drawDate">...</h1>
       <p id="countdown"></p>
     </div>
-    <div class="ticket-bottom">
+    <div class="ticket-stub">
       <div class="picks" id="picks"></div>
       <p class="muted" id="heroNote">Loading tips...</p>
     </div>
   </header>
 
-  <section class="block" id="totalBlock" hidden>
-    <h2>All days together</h2>
-    <p class="muted" id="totalNote"></p>
-  </section>
+  <nav class="jump" id="jump" aria-label="Sections" hidden></nav>
 
-  <div id="tallies"></div>
+  <div id="totals" hidden>
+    <p class="muted legend" id="legend" hidden></p>
+    <div class="boards" id="tallies"></div>
+  </div>
 
   <section class="block" id="daysBlock" hidden>
     <h2>Day by day</h2>
-    <p class="muted">The most named numbers of each day. ×2 means two tipsters named it that day.</p>
-    <div id="dayList"></div>
+    <p class="muted">The most named numbers of each day, newest first. ×2 means two tipsters named it that day.</p>
+    <div class="slips" id="dayList"></div>
   </section>
 
-  <section class="block" id="sourcesBlock" hidden>
-    <h2>Tips from each source</h2>
-    <div id="sourceList"></div>
-  </section>
+  <div class="pair">
+    <section class="block" id="sourcesBlock" hidden>
+      <h2>Tips from each source</h2>
+      <div id="sourceList"></div>
+    </section>
 
-  <section class="block" id="pastBlock" hidden>
-    <h2>From past results</h2>
-    <div id="past"></div>
-  </section>
+    <section class="block" id="pastBlock" hidden>
+      <h2>From past results</h2>
+      <div id="past"></div>
+    </section>
+  </div>
 
   <section class="block" id="lastBlock" hidden>
     <h2>What happened in the last draw</h2>
@@ -160,27 +251,53 @@ async function load(file, fallback) {
   } catch { return fallback; }
 }
 
+function cells(text, cls, darkFrom) {
+  const row = el("div", cls);
+  row.setAttribute("aria-label", text);
+  [...text].forEach((ch, i) => row.append(el("span", darkFrom != null && i >= darkFrom ? "cell on" : "cell", ch)));
+  return row;
+}
+
+function chip(n, count) {
+  const c = el("span", "chip", n);
+  c.append(el("small", null, "×" + count));
+  return c;
+}
+
+/* ---------- ticket ---------- */
 function pick(label, item) {
   const wrap = el("div");
-  wrap.append(el("p", "muted", label));
-  const row = el("div", "cells");
-  row.setAttribute("aria-label", item.n);
-  for (const ch of item.n) row.append(el("span", "cell", ch));
-  wrap.append(row, el("p", "stamp", `Named by ${plural(item.count, "tipster")}`));
+  wrap.append(el("p", "muted", label), cells(item.n, "cells"),
+              el("p", "stamp", `Named by ${plural(item.count, "tipster")}`));
   if (item.weight != null) {
-    wrap.append(el("p", "muted", `Weight ${item.weight}: ${plural(item.sites, "site")}, ${plural(item.days, "day")}`));
+    wrap.append(el("p", "muted pickmeta", `Weight ${item.weight}, ${plural(item.sites, "site")}, ${plural(item.days, "day")}`));
   }
   return wrap;
 }
 
-// "3 tipsters, 2 sites, 4 days, day by day 1 · 2 · 2 · 3"
+/* ---------- totals ---------- */
+const level = (n) => (n >= 3 ? "sq l3" : n === 2 ? "sq l2" : n === 1 ? "sq l1" : "sq");
+
+function strip(byDay) {
+  const s = el("span", "strip");
+  const entries = Object.entries(byDay || {});
+  if (!entries.length) return s;
+  const named = entries.filter(([, n]) => n > 0).length;
+  s.setAttribute("role", "img");
+  s.setAttribute("aria-label", `Named on ${named} of ${plural(entries.length, "day")}`);
+  for (const [day, n] of entries) {
+    const q = el("span", level(n));
+    q.title = `${shortDate(day)}: ${plural(n, "tipster")}`;
+    s.append(q);
+  }
+  return s;
+}
+
 function countsText(it) {
   const parts = [plural(it.count, "tipster")];
   if (it.sites != null) parts.push(plural(it.sites, "site"));
-  if (it.days != null) parts.push(plural(it.days, "day"));
-  const perDay = Object.values(it.by_day || {});
-  if (perDay.length > 1) parts.push("day by day " + perDay.join(" · "));
-  return parts.join(", ");
+  if (it.days != null) parts.push(`named on ${plural(it.days, "day")}`);
+  return parts.join(", ") + ".";
 }
 
 function pastText(p) {
@@ -191,7 +308,7 @@ function pastText(p) {
   return t + ".";
 }
 
-function tallyBlock(title, items, minCount) {
+function board(title, items, minCount) {
   const sec = el("section", "block");
   sec.append(el("h2", null, title));
   const rows = (items || []).filter((i) => i.count >= minCount);
@@ -199,27 +316,71 @@ function tallyBlock(title, items, minCount) {
     sec.append(el("p", "muted", "No number has been named by two tipsters yet."));
     return sec;
   }
+  const head = el("div", "rowgrid rowhead");
+  head.append(el("span"), el("span", null, "Number"), el("span", null, "Strength and days"),
+              el("span", null, "Weight"), el("span"));
+  sec.append(head);
   const maxCount = Math.max(...rows.map((i) => i.count));
-  const ol = el("ol", "rows");
-  for (const it of rows) {
-    const li = el("li", "row"), bar = el("span", "bar"), fill = el("span", "fill");
+  rows.forEach((it, i) => {
+    const d = el("details", i === 0 ? "row lead" : "row");
+    const sum = el("summary"), grid = el("span", "rowgrid");
+    const bar = el("span", "bar"), fill = el("span", "fill");
     const rating = it.rating != null ? it.rating : Math.round((it.count / maxCount) * 100);
     fill.style.width = Math.max(4, rating) + "%";
     bar.append(fill);
-    li.append(el("span", "num", it.n), bar,
-              el("span", "muted", it.weight != null ? `weight ${it.weight}` : plural(it.count, "tipster")));
-    const sub = el("span", "sub");
-    if (it.new) sub.append(el("span", "tag", "NEW"));
-    sub.append(document.createTextNode(countsText(it)));
-    li.append(sub);
+    const under = el("span", "under");
+    under.append(strip(it.by_day));
+    if (it.new) under.append(el("span", "tag", "NEW"));
+    const meter = el("span");
+    meter.append(bar, under);
+    grid.append(el("span", "rank", i + 1), el("span", "num", it.n), meter,
+                el("span", "wt", it.weight != null ? it.weight : it.count), el("span", "chev"));
+    sum.append(grid);
+    d.append(sum, el("p", "sub", countsText(it)));
     const past = pastText(it.past);
-    if (past) li.append(el("span", "sub", past));
-    ol.append(li);
-  }
-  sec.append(ol);
+    if (past) d.append(el("p", "sub", past));
+    sec.append(d);
+  });
   return sec;
 }
 
+function renderLegend(w) {
+  if (!w) return;
+  const p = $("legend");
+  const cap = w.day_cap ? ` (${w.day_cap} days at most)` : "";
+  p.append(`Every day's tips are kept and added up. Weight = ${w.tipster} × tipsters + ${w.site} × sites + ${w.day} × days${cap}. ` +
+           "Each square is one day, oldest first:");
+  for (const [cls, text] of [["sq", " not named,"], ["sq l1", " 1 tipster,"], ["sq l2", " 2,"], ["sq l3", " 3 or more. "]]) {
+    p.append(el("span", cls), text);
+  }
+  p.append("Tap a number for details.");
+  p.hidden = false;
+}
+
+/* ---------- day by day ---------- */
+function renderDays(days) {
+  if (!days.length) return;
+  const box = $("dayList");
+  [...days].reverse().forEach((day, i) => {
+    const slip = el("article", "slip");
+    const h = el("h3", null, shortDate(day.date));
+    if (i === 0) h.append(el("span", "tag", "Latest"));
+    slip.append(h, el("p", "muted", `${plural(day.voices_total || 0, "tip")} read`));
+    const dl = el("dl");
+    for (const [key, label] of CATS) {
+      const items = (day.top || {})[key] || [];
+      if (!items.length) continue;
+      const dd = el("dd");
+      for (const t of items) dd.append(chip(t.n, t.count));
+      dl.append(el("dt", null, label), dd);
+    }
+    slip.append(dl.children.length ? dl : el("p", "muted", "No tips found on this day."));
+    box.append(slip);
+  });
+  $("daysBlock").hidden = false;
+}
+
+/* ---------- sources ---------- */
 function line(label, list) {
   if (!list || !list.length) return null;
   const p = el("p");
@@ -227,30 +388,10 @@ function line(label, list) {
   return p;
 }
 
-function renderDays(days) {
-  if (!days || !days.length) return;
-  const box = $("dayList");
-  [...days].reverse().forEach((day, i) => {
-    const d = el("details");
-    if (i === 0) d.open = true;
-    const sum = el("summary", null, niceDate(day.date) + " ");
-    sum.append(el("span", "muted", `(${plural(day.voices_total || 0, "tip")} read)`));
-    d.append(sum);
-    let any = false;
-    for (const [key, label] of CATS) {
-      const l = line(label, ((day.top || {})[key] || []).map((t) => `${t.n} ×${t.count}`));
-      if (l) { d.append(l); any = true; }
-    }
-    if (!any) d.append(el("p", "muted", "No tips were found on this day."));
-    box.append(d);
-  });
-  $("daysBlock").hidden = false;
-}
-
 function renderSources(sources) {
   const box = $("sourceList");
   for (const s of sources) {
-    const d = el("details");
+    const d = el("details", "src");
     const count = s.voices.length;
     const status = !s.ok ? "no data received" : count ? plural(count, "tip") : "no tip found for this draw";
     const sum = el("summary", null, s.name + " ");
@@ -259,7 +400,7 @@ function renderSources(sources) {
     for (const v of s.voices) {
       const div = el("div", "voice");
       div.append(el("strong", null, v.name));
-      if (v.day) div.append(el("span", "muted", ` · first seen ${shortDate(v.day)}`));
+      if (v.day) div.append(el("span", "muted", `, first seen ${shortDate(v.day)}`));
       if (v.copy) div.append(el("span", "muted", " (same as another list, not counted)"));
       for (const l of [line("Upper digits", v.up_digits), line("Upper sets", v.up_sets),
                        line("Lower digits", v.down_digits), line("Lower pairs", v.down_pairs)]) {
@@ -275,47 +416,74 @@ function renderSources(sources) {
   $("sourcesBlock").hidden = !sources.length;
 }
 
-function digitTable(rows, hot, win, all) {
-  const t = el("table", "tbl"), head = el("tr");
-  for (const h of ["Digit", `Last ${win}`, `All ${all}`, "Draws since last"]) head.append(el("th", null, h));
-  t.append(head);
+/* ---------- past results ---------- */
+function digitChart(rows, hot, win) {
+  const max = Math.max(1, ...rows.map((r) => r.recent));
+  const chart = el("div", "chart");
+  chart.setAttribute("role", "list");
   for (const r of rows) {
-    const tr = el("tr", hot.includes(r.n) ? "hot" : null);
-    tr.append(el("td", "num", r.n), el("td", null, r.recent), el("td", null, r.all), el("td", null, r.gap));
-    t.append(tr);
+    const col = el("div", hot.includes(r.n) ? "col hot" : "col");
+    col.setAttribute("role", "listitem");
+    const ago = r.gap === 0 ? "came in the latest draw" : `last came ${plural(r.gap, "draw")} ago`;
+    col.setAttribute("aria-label", `Digit ${r.n}: in ${r.recent} of the last ${win} draws, ${ago}`);
+    const wrap = el("span", "colwrap"), bar = el("span", "colbar");
+    bar.style.height = Math.round((r.recent / max) * 100) + "%";
+    wrap.append(bar);
+    col.append(el("span", "cnt", r.recent), wrap, el("span", "dg", r.n), el("span", "gapn", r.gap));
+    chart.append(col);
   }
-  return t;
+  return chart;
 }
 
 function renderPast(s) {
   if (!s || !s.test) return;
   const box = $("past"), t = s.test;
-  box.append(el("p", "muted", `${s.draws} draws, ${niceDate(s.from)} to ${niceDate(s.to)}. "Hot" means seen most in the last ${s.window} draws.`));
-  for (const l of [line("Hot upper digits", s.hot_up_digits),
-                   line("Hot lower digits", s.hot_down_digits),
-                   line("Lower pairs that came most", s.top_down_pairs.map((p) => `${p.n} ×${p.times}`))]) {
-    if (l) box.append(l);
+  box.append(el("p", "muted", `${s.draws} draws, ${niceDate(s.from)} to ${niceDate(s.to)}.`));
+
+  const grid = el("div", "pastgrid");
+  for (const [title, rows, hot] of [["Upper digits (last 3 of first prize)", s.up_digits, s.hot_up_digits],
+                                    ["Lower digits (2-digit prize)", s.down_digits, s.hot_down_digits]]) {
+    const part = el("div");
+    part.append(el("h3", null, title), digitChart(rows, hot, s.window));
+    grid.append(part);
   }
-  box.append(el("p", "muted gap",
-    `Checked on the past draws, these picks hit: hot upper digits ${t.hot_up_digits.hit}% ` +
-    `(pure chance ${t.hot_up_digits.chance}%), hot lower digits ${t.hot_down_digits.hit}% ` +
-    `(chance ${t.hot_down_digits.chance}%), top lower pairs ${t.top_down_pairs.hit}% ` +
-    `(chance ${t.top_down_pairs.chance}%).`));
-  for (const [title, rows, hot] of [["Upper digits table", s.up_digits, s.hot_up_digits],
-                                    ["Lower digits table", s.down_digits, s.hot_down_digits]]) {
-    const d = el("details");
-    d.append(el("summary", null, title), digitTable(rows, hot, s.window, s.draws));
-    box.append(d);
+  box.append(grid, el("p", "muted",
+    `Bar height is how many of the last ${s.window} draws had the digit; the three hot digits are red. ` +
+    "The small number under a digit is how many draws ago it last came (0 means the latest draw)."));
+
+  const pairs = el("div", "part");
+  pairs.append(el("h3", null, "Lower pairs that came most often"));
+  const chips = el("div");
+  for (const p of s.top_down_pairs) chips.append(chip(p.n, p.times));
+  pairs.append(chips);
+  box.append(pairs);
+
+  const test = el("div", "part");
+  test.append(el("h3", null, "Does picking hot numbers work?"));
+  const tbl = el("table", "tbl"), head = el("tr");
+  for (const h of ["Pick", "Hit on past draws", "Pure chance"]) head.append(el("th", null, h));
+  tbl.append(head);
+  for (const [label, r] of [["Hot upper digits", t.hot_up_digits], ["Hot lower digits", t.hot_down_digits],
+                            ["Top lower pairs", t.top_down_pairs]]) {
+    const tr = el("tr");
+    tr.append(el("td", null, label), el("td", null, r.hit + "%"), el("td", null, r.chance + "%"));
+    tbl.append(tr);
   }
+  test.append(tbl, el("p", "muted", "When the two numbers are close, past results are not telling the next draw."));
+  box.append(test);
   $("pastBlock").hidden = false;
 }
 
+/* ---------- last draw ---------- */
 function renderLast(h) {
   if (!h) return;
   const box = $("last");
-  box.append(el("p", "muted", "First prize, " + niceDate(h.draw_date)));
-  box.append(el("p", "result", h.first_prize));
-  box.append(el("p", null, `Upper (3UP): ${h.up3}   Lower: ${h.down2}`));
+  box.append(el("p", "muted", niceDate(h.draw_date)));
+  const prize = el("div", "prize"), first = el("div"), lower = el("div");
+  first.append(el("p", "muted", "First prize"), cells(h.first_prize, "cells sm", h.first_prize.length - 3));
+  lower.append(el("p", "muted", "Lower"), cells(h.down2, "cells sm"));
+  prize.append(first, lower);
+  box.append(prize, el("p", "muted", "The dark cells are the upper number (3UP)."));
   const yes = (b) => (b ? "hit" : "missed");
   box.append(el("p", null, `Most-named numbers: upper ${yes(h.consensus.up)}, lower ${yes(h.consensus.down)}.`));
   const ul = el("ul", "hits");
@@ -324,16 +492,28 @@ function renderLast(h) {
     if (s.up_exact) got.push("upper hit exactly");
     else if (s.up_any_order) got.push("upper hit in a different order");
     if (s.down) got.push("lower hit");
-    const li = el("li", null, s.name + ": ");
-    li.append(el("span", "muted", got.length ? got.join(", ") : "no hit"));
+    const li = el("li");
+    li.append(el("span", null, s.name), el("span", got.length ? "ok" : "no", got.length ? got.join(", ") : "no hit"));
     ul.append(li);
   }
   box.append(ul);
   $("lastBlock").hidden = false;
 }
 
-(async () => {
-  const [data, history] = await Promise.all([load("data.json", null), load("history.json", [])]);
+/* ---------- page ---------- */
+function buildNav() {
+  const nav = $("jump");
+  for (const [id, label] of [["totals", "Totals"], ["daysBlock", "Day by day"], ["sourcesBlock", "Sources"],
+                             ["pastBlock", "Past results"], ["lastBlock", "Last draw"]]) {
+    if ($(id).hidden) continue;
+    const a = el("a", null, label);
+    a.href = "#" + id;
+    nav.append(a);
+  }
+  nav.hidden = nav.children.length < 2;
+}
+
+function render(data, history) {
   renderLast(history[0]);
   if (!data) {
     $("drawDate").textContent = "No data yet";
@@ -350,6 +530,10 @@ function renderLast(h) {
     return;
   }
   const top = data.top, days = data.days || [];
+  if (!data.voices_total) {
+    $("heroNote").textContent = "No tips for this draw yet. The collector checks again every morning.";
+    return;
+  }
   const up = top.up_sets[0], down = top.down_pairs[0];
   if (up && up.count >= 2) $("picks").append(pick("Strongest for upper (3UP)", up));
   if (down && down.count >= 2) $("picks").append(pick("Strongest for lower", down));
@@ -357,23 +541,24 @@ function renderLast(h) {
   const when = new Date(data.updated_at).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
   $("heroNote").textContent = days.length
     ? `${plural(days.length, "day")} of tips collected from ${plural(okSources, "source")}. Last update: ${when}.`
-    : `${data.voices_counted} tips counted from ${okSources} sources. Last update: ${when}.`;
+    : `${data.voices_counted} tips counted from ${plural(okSources, "source")}. Last update: ${when}.`;
 
-  if (data.weights) {
-    const w = data.weights;
-    $("totalNote").textContent =
-      `Every day's tips are kept and added up. Weight = ${w.tipster} × tipsters + ${w.site} × sites + ${w.day} × days. ` +
-      `The longest bar is the strongest number in its list. NEW means it first appeared in the latest collection.`;
-    $("totalBlock").hidden = false;
-  }
+  renderLegend(data.weights);
   $("tallies").append(
-    tallyBlock("Upper (3UP) digits", top.up_digits, 1),
-    tallyBlock("Upper (3UP) sets", top.up_sets, 2),
-    tallyBlock("Lower digits", top.down_digits, 1),
-    tallyBlock("Lower pairs", top.down_pairs, 2)
+    board("Upper (3UP) digits", top.up_digits, 1),
+    board("Upper (3UP) sets", top.up_sets, 2),
+    board("Lower digits", top.down_digits, 1),
+    board("Lower pairs", top.down_pairs, 2)
   );
+  $("totals").hidden = false;
   renderDays(days);
   renderSources(data.sources);
+}
+
+(async () => {
+  const [data, history] = await Promise.all([load("data.json", null), load("history.json", [])]);
+  render(data, history);
+  buildNav();
 })();
 </script>
 </body>
