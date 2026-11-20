@@ -50,13 +50,20 @@ a{color:var(--ink)}
   display:inline-block;font:700 1rem/1 var(--num);color:var(--stamp);
   border:2px solid var(--stamp);border-radius:4px;padding:.3em .55em;transform:rotate(-3deg);
 }
+.picks .muted{margin-top:.4rem}
 
 .block{background:var(--card);border-radius:14px;padding:1.25rem 1.5rem;margin-top:1rem}
 .rows{list-style:none;margin:0;padding:0}
-.row{display:grid;grid-template-columns:4.5rem 1fr auto;align-items:center;gap:.75rem;padding:.3rem 0}
+.row{display:grid;grid-template-columns:4.5rem 1fr auto;align-items:center;gap:.1rem .75rem;padding:.55rem 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row .sub{grid-column:1/-1;color:var(--soft);font-size:.92rem;line-height:1.45}
 .num{font:700 1.6rem/1 var(--num);letter-spacing:.04em}
 .bar{height:.6rem;background:#E3EDE8;border-radius:99px;overflow:hidden}
 .fill{display:block;height:100%;background:var(--bar);border-radius:99px}
+.tag{
+  display:inline-block;font:700 .72rem/1 var(--num);color:var(--stamp);
+  border:1.5px solid var(--stamp);border-radius:3px;padding:.2em .4em;margin-right:.45rem;vertical-align:.08em;
+}
 
 details{border-top:1px solid var(--line);padding:.6rem 0}
 details:first-of-type{border-top:0}
@@ -68,6 +75,13 @@ summary:focus-visible,a:focus-visible{outline:3px solid var(--stamp);outline-off
 .result{font:700 2rem/1.1 var(--num);letter-spacing:.06em;margin:.25rem 0 .5rem}
 .hits{list-style:none;margin:.75rem 0 0;padding:0}
 .hits li{border-top:1px solid var(--line);padding:.45rem 0}
+
+.tbl{width:100%;border-collapse:collapse;margin-top:.5rem;font-size:1rem}
+.tbl th,.tbl td{text-align:left;padding:.3rem .5rem .3rem 0;border-top:1px solid var(--line)}
+.tbl th{border-top:0;color:var(--soft);font-weight:600;font-size:.9rem}
+.tbl .num{font-size:1.25rem}
+.tbl .hot td{color:var(--stamp);font-weight:600}
+.gap{margin-top:.6rem}
 footer{margin-top:1.5rem}
 </style>
 </head>
@@ -85,11 +99,27 @@ footer{margin-top:1.5rem}
     </div>
   </header>
 
+  <section class="block" id="totalBlock" hidden>
+    <h2>All days together</h2>
+    <p class="muted" id="totalNote"></p>
+  </section>
+
   <div id="tallies"></div>
+
+  <section class="block" id="daysBlock" hidden>
+    <h2>Day by day</h2>
+    <p class="muted">The most named numbers of each day. ×2 means two tipsters named it that day.</p>
+    <div id="dayList"></div>
+  </section>
 
   <section class="block" id="sourcesBlock" hidden>
     <h2>Tips from each source</h2>
     <div id="sourceList"></div>
+  </section>
+
+  <section class="block" id="pastBlock" hidden>
+    <h2>From past results</h2>
+    <div id="past"></div>
   </section>
 
   <section class="block" id="lastBlock" hidden>
@@ -98,7 +128,8 @@ footer{margin-top:1.5rem}
   </section>
 
   <footer class="muted">
-    The draw is random. This page only counts how many tipsters named each number; it cannot promise a win.
+    The draw is random. This page counts how many tipsters named each number and on how many days.
+    Past results are shown for reference only. It cannot promise a win.
   </footer>
 </main>
 
@@ -112,11 +143,15 @@ const el = (tag, cls, text) => {
 };
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const niceDate = (iso) => { const [y, m, d] = iso.split("-").map(Number); return `${d} ${MONTHS[m - 1]} ${y}`; };
+const shortDate = (iso) => { const [, m, d] = iso.split("-").map(Number); return `${d} ${MONTHS[m - 1].slice(0, 3)}`; };
 const daysLeft = (iso) => {
   const [y, m, d] = iso.split("-").map(Number), n = new Date();
   return Math.round((Date.UTC(y, m - 1, d) - Date.UTC(n.getFullYear(), n.getMonth(), n.getDate())) / 864e5);
 };
-const tipsters = (n) => `${n} ${n === 1 ? "tipster" : "tipsters"}`;
+const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
+const CATS = [["up_digits", "Upper digits"], ["up_sets", "Upper sets"],
+              ["down_digits", "Lower digits"], ["down_pairs", "Lower pairs"]];
+
 async function load(file, fallback) {
   try {
     const r = await fetch(file + "?t=" + Date.now());
@@ -131,11 +166,32 @@ function pick(label, item) {
   const row = el("div", "cells");
   row.setAttribute("aria-label", item.n);
   for (const ch of item.n) row.append(el("span", "cell", ch));
-  wrap.append(row, el("p", "stamp", `Named by ${tipsters(item.count)}`));
+  wrap.append(row, el("p", "stamp", `Named by ${plural(item.count, "tipster")}`));
+  if (item.weight != null) {
+    wrap.append(el("p", "muted", `Weight ${item.weight}: ${plural(item.sites, "site")}, ${plural(item.days, "day")}`));
+  }
   return wrap;
 }
 
-function tallyBlock(title, items, total, minCount) {
+// "3 tipsters, 2 sites, 4 days, day by day 1 · 2 · 2 · 3"
+function countsText(it) {
+  const parts = [plural(it.count, "tipster")];
+  if (it.sites != null) parts.push(plural(it.sites, "site"));
+  if (it.days != null) parts.push(plural(it.days, "day"));
+  const perDay = Object.values(it.by_day || {});
+  if (perDay.length > 1) parts.push("day by day " + perDay.join(" · "));
+  return parts.join(", ");
+}
+
+function pastText(p) {
+  if (!p || !p.of) return "";
+  let t = `Past results: came ${plural(p.times, "time")} in ${p.of} draws`;
+  if (p.any_order != null) t += `, ${p.any_order} in any order`;
+  if (p.last) t += `, last on ${niceDate(p.last)}`;
+  return t + ".";
+}
+
+function tallyBlock(title, items, minCount) {
   const sec = el("section", "block");
   sec.append(el("h2", null, title));
   const rows = (items || []).filter((i) => i.count >= minCount);
@@ -143,12 +199,21 @@ function tallyBlock(title, items, total, minCount) {
     sec.append(el("p", "muted", "No number has been named by two tipsters yet."));
     return sec;
   }
+  const maxCount = Math.max(...rows.map((i) => i.count));
   const ol = el("ol", "rows");
   for (const it of rows) {
     const li = el("li", "row"), bar = el("span", "bar"), fill = el("span", "fill");
-    fill.style.width = Math.max(4, Math.round((it.count / total) * 100)) + "%";
+    const rating = it.rating != null ? it.rating : Math.round((it.count / maxCount) * 100);
+    fill.style.width = Math.max(4, rating) + "%";
     bar.append(fill);
-    li.append(el("span", "num", it.n), bar, el("span", "muted", tipsters(it.count)));
+    li.append(el("span", "num", it.n), bar,
+              el("span", "muted", it.weight != null ? `weight ${it.weight}` : plural(it.count, "tipster")));
+    const sub = el("span", "sub");
+    if (it.new) sub.append(el("span", "tag", "NEW"));
+    sub.append(document.createTextNode(countsText(it)));
+    li.append(sub);
+    const past = pastText(it.past);
+    if (past) li.append(el("span", "sub", past));
     ol.append(li);
   }
   sec.append(ol);
@@ -162,18 +227,39 @@ function line(label, list) {
   return p;
 }
 
+function renderDays(days) {
+  if (!days || !days.length) return;
+  const box = $("dayList");
+  [...days].reverse().forEach((day, i) => {
+    const d = el("details");
+    if (i === 0) d.open = true;
+    const sum = el("summary", null, niceDate(day.date) + " ");
+    sum.append(el("span", "muted", `(${plural(day.voices_total || 0, "tip")} read)`));
+    d.append(sum);
+    let any = false;
+    for (const [key, label] of CATS) {
+      const l = line(label, ((day.top || {})[key] || []).map((t) => `${t.n} ×${t.count}`));
+      if (l) { d.append(l); any = true; }
+    }
+    if (!any) d.append(el("p", "muted", "No tips were found on this day."));
+    box.append(d);
+  });
+  $("daysBlock").hidden = false;
+}
+
 function renderSources(sources) {
   const box = $("sourceList");
   for (const s of sources) {
     const d = el("details");
     const count = s.voices.length;
-    const status = !s.ok ? "no data received" : count ? `${count} ${count === 1 ? "tip" : "tips"}` : "no tip found for this draw";
+    const status = !s.ok ? "no data received" : count ? plural(count, "tip") : "no tip found for this draw";
     const sum = el("summary", null, s.name + " ");
     sum.append(el("span", "muted", `(${status})`));
     d.append(sum);
     for (const v of s.voices) {
       const div = el("div", "voice");
       div.append(el("strong", null, v.name));
+      if (v.day) div.append(el("span", "muted", ` · first seen ${shortDate(v.day)}`));
       if (v.copy) div.append(el("span", "muted", " (same as another list, not counted)"));
       for (const l of [line("Upper digits", v.up_digits), line("Upper sets", v.up_sets),
                        line("Lower digits", v.down_digits), line("Lower pairs", v.down_pairs)]) {
@@ -187,6 +273,41 @@ function renderSources(sources) {
     box.append(d);
   }
   $("sourcesBlock").hidden = !sources.length;
+}
+
+function digitTable(rows, hot, win, all) {
+  const t = el("table", "tbl"), head = el("tr");
+  for (const h of ["Digit", `Last ${win}`, `All ${all}`, "Draws since last"]) head.append(el("th", null, h));
+  t.append(head);
+  for (const r of rows) {
+    const tr = el("tr", hot.includes(r.n) ? "hot" : null);
+    tr.append(el("td", "num", r.n), el("td", null, r.recent), el("td", null, r.all), el("td", null, r.gap));
+    t.append(tr);
+  }
+  return t;
+}
+
+function renderPast(s) {
+  if (!s || !s.test) return;
+  const box = $("past"), t = s.test;
+  box.append(el("p", "muted", `${s.draws} draws, ${niceDate(s.from)} to ${niceDate(s.to)}. "Hot" means seen most in the last ${s.window} draws.`));
+  for (const l of [line("Hot upper digits", s.hot_up_digits),
+                   line("Hot lower digits", s.hot_down_digits),
+                   line("Lower pairs that came most", s.top_down_pairs.map((p) => `${p.n} ×${p.times}`))]) {
+    if (l) box.append(l);
+  }
+  box.append(el("p", "muted gap",
+    `Checked on the past draws, these picks hit: hot upper digits ${t.hot_up_digits.hit}% ` +
+    `(pure chance ${t.hot_up_digits.chance}%), hot lower digits ${t.hot_down_digits.hit}% ` +
+    `(chance ${t.hot_down_digits.chance}%), top lower pairs ${t.top_down_pairs.hit}% ` +
+    `(chance ${t.top_down_pairs.chance}%).`));
+  for (const [title, rows, hot] of [["Upper digits table", s.up_digits, s.hot_up_digits],
+                                    ["Lower digits table", s.down_digits, s.hot_down_digits]]) {
+    const d = el("details");
+    d.append(el("summary", null, title), digitTable(rows, hot, s.window, s.draws));
+    box.append(d);
+  }
+  $("pastBlock").hidden = false;
 }
 
 function renderLast(h) {
@@ -222,25 +343,36 @@ function renderLast(h) {
   $("drawDate").textContent = niceDate(data.draw_date);
   const n = daysLeft(data.draw_date);
   $("countdown").textContent = n > 1 ? `${n} days to go` : n === 1 ? "Draw is tomorrow" : n === 0 ? "Draw is today" : "";
+  renderPast(data.history_tips);
 
   if (data.status !== "ready") {
     $("heroNote").textContent = `Tips for this draw will start coming in from ${niceDate(data.collect_from)}.`;
     return;
   }
-  const top = data.top, total = Math.max(1, data.voices_counted);
+  const top = data.top, days = data.days || [];
   const up = top.up_sets[0], down = top.down_pairs[0];
-  if (up && up.count >= 2) $("picks").append(pick("Most named for upper (3UP)", up));
-  if (down && down.count >= 2) $("picks").append(pick("Most named for lower", down));
+  if (up && up.count >= 2) $("picks").append(pick("Strongest for upper (3UP)", up));
+  if (down && down.count >= 2) $("picks").append(pick("Strongest for lower", down));
   const okSources = data.sources.filter((s) => s.voices.length).length;
   const when = new Date(data.updated_at).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
-  $("heroNote").textContent = `${data.voices_counted} tips counted from ${okSources} sources. Last update: ${when}.`;
+  $("heroNote").textContent = days.length
+    ? `${plural(days.length, "day")} of tips collected from ${plural(okSources, "source")}. Last update: ${when}.`
+    : `${data.voices_counted} tips counted from ${okSources} sources. Last update: ${when}.`;
 
+  if (data.weights) {
+    const w = data.weights;
+    $("totalNote").textContent =
+      `Every day's tips are kept and added up. Weight = ${w.tipster} × tipsters + ${w.site} × sites + ${w.day} × days. ` +
+      `The longest bar is the strongest number in its list. NEW means it first appeared in the latest collection.`;
+    $("totalBlock").hidden = false;
+  }
   $("tallies").append(
-    tallyBlock("Upper (3UP) digits", top.up_digits, total, 1),
-    tallyBlock("Upper (3UP) sets", top.up_sets, total, 2),
-    tallyBlock("Lower digits", top.down_digits, total, 1),
-    tallyBlock("Lower pairs", top.down_pairs, total, 2)
+    tallyBlock("Upper (3UP) digits", top.up_digits, 1),
+    tallyBlock("Upper (3UP) sets", top.up_sets, 2),
+    tallyBlock("Lower digits", top.down_digits, 1),
+    tallyBlock("Lower pairs", top.down_pairs, 2)
   );
+  renderDays(days);
   renderSources(data.sources);
 })();
 </script>
