@@ -35,6 +35,7 @@ MIN_GAP = 62              # seconds between AI calls, to stay inside the free li
 W_TIPSTER = 3             # every different tipster that gave the number
 W_SITE = 2                # every different website it appeared on
 W_DAY = 1                 # every different day it appeared
+MAX_DAY_POINTS = 5        # days counted in the weight at most
 TOP_N = 10                # numbers kept in each list
 HOT_WINDOW = 30           # past draws used for the "hot digits" statistics
 
@@ -309,7 +310,7 @@ def tally(voices, key, top=TOP_N):
         tipsters = sum(max(c.values()) for c in sites.values())
         rows.append({
             "n": n, "count": tipsters, "sites": len(sites), "days": len(by_day),
-            "weight": W_TIPSTER * tipsters + W_SITE * len(sites) + W_DAY * len(by_day),
+            "weight": W_TIPSTER * tipsters + W_SITE * len(sites) + W_DAY * min(len(by_day), MAX_DAY_POINTS),
             "first_seen": min(by_day),
             "new": len(all_days) > 1 and min(by_day) == all_days[-1],
             "by_day": {d: by_day.get(d, 0) for d in all_days},
@@ -559,7 +560,7 @@ def main():
         "days_collected": [d["date"] for d in days],
         "voices_total": len(voices),
         "voices_counted": sum(not v["copy"] for v in voices),
-        "weights": {"tipster": W_TIPSTER, "site": W_SITE, "day": W_DAY},
+        "weights": {"tipster": W_TIPSTER, "site": W_SITE, "day": W_DAY, "day_cap": MAX_DAY_POINTS},
         "top": top,
         "days": days,
         "sources": merged_sources(days),
