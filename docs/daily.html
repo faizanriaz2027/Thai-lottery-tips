@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thai Lottery Tips - total weight</title>
+<style>
+ body{font-family:system-ui,sans-serif;margin:0;padding:14px;background:#f5f6f8;color:#16202c}
+ h1{font-size:20px;margin:0 0 4px} h2{font-size:17px;margin:24px 0 8px}
+ h3{font-size:14px;margin:0 0 6px;color:#3d4b5c}
+ .meta{font-size:13px;color:#5a6777}
+ .note{font-size:13px;background:#fff8e1;border-radius:8px;padding:8px 10px;margin:8px 0}
+ .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+ .card{background:#fff;border-radius:10px;padding:12px;overflow-x:auto}
+ table{border-collapse:collapse;width:100%;font-size:13px}
+ th,td{padding:5px 6px;text-align:left;border-bottom:1px solid #edf0f3;white-space:nowrap}
+ th{color:#5a6777;font-weight:600}
+ .n{font-weight:700;font-size:16px;font-variant-numeric:tabular-nums}
+ .bar{height:6px;background:#1f7a5a;border-radius:3px;min-width:2px}
+ .best td{background:#eaf6f0}
+ .new{background:#d6402b;color:#fff;border-radius:4px;padding:0 5px;font-size:11px;margin-left:4px}
+ .chips span{display:inline-block;background:#eef1f5;border-radius:6px;padding:2px 7px;margin:2px;font-weight:600}
+ .chips small{font-weight:400;color:#5a6777}
+</style>
+</head>
+<body>
+<h1>Thai Lottery Tips</h1>
+<div class="meta" id="meta">Loading...</div>
+<div id="app"></div>
+<script>
+const CATS = [["up_digits","Upper digit"],["up_sets","Upper 3-digit"],
+              ["down_digits","Lower digit"],["down_pairs","Lower 2-digit"]];
+
+fetch("data.json?t=" + Date.now()).then(r => r.json()).then(d => {
+  const days = d.days || [];
+  document.getElementById("meta").textContent = "Draw " + d.draw_date + " · " +
+    (d.status === "ready"
+      ? days.length + " day(s) collected · updated " + (d.updated_at || "")
+      : "collection starts " + d.collect_from);
+  let h = "";
+
+  if (d.status === "ready" && d.top) {
+    const w = d.weights || {};
+    h += `<h2>Total weight (all days together)</h2>
+      <div class="meta">Weight = ${w.tipster} x tipsters + ${w.site} x websites + ${w.day} x days.
+      Rating 100 = strongest number in its list.</div><div class="grid">`;
+    for (const [k, label] of CATS) {
+      h += `<div class="card"><h3>${label}</h3><table><tr><th>No.</th><th>Rating</th><th>Weight</th>
+        <th>Tipsters</th><th>Sites</th><th>Days</th><th>Day by day</th><th>Came before</th></tr>`;
+      (d.top[k] || []).forEach((t, i) => {
+        const p = t.past || {};
+        const past = p.of ? `${p.times}x in ${p.of}` +
+          (p.any_order !== undefined ? ` (${p.any_order}x any order)` : "") +
+          (p.last ? `, last ${p.last}` : "") : "";
+        h += `<tr class="${i === 0 ? "best" : ""}">
+          <td class="n">${t.n}${t.new ? '<span class="new">NEW</span>' : ""}</td>
+          <td>${t.rating}<div class="bar" style="width:${t.rating}%"></div></td>
+          <td>${t.weight}</td><td>${t.count}</td><td>${t.sites}</td><td>${t.days}</td>
+          <td>${Object.values(t.by_day || {}).join(" · ")}</td><td>${past}</td></tr>`;
+      });
+      h += "</table></div>";
+    }
+    h += `</div><h2>Day by day</h2><div class="grid">`;
+    for (const day of [...days].reverse()) {
+      h += `<div class="card"><h3>${day.date} · ${day.voices_total || 0} tips</h3>`;
+      for (const [k, label] of CATS) {
+        const row = ((day.top || {})[k] || [])
+          .map(t => `<span>${t.n} <small>x${t.count}</small></span>`).join("");
+        h += `<div class="meta">${label}</div><div class="chips">${row || "-"}</div>`;
+      }
+      h += "</div>";
+    }
+    h += "</div>";
+  }
+
+  const s = d.history_tips;
+  if (s && s.test) {
+    const t = s.test;
+    const dig = (rows, hot) =>
+      `<table><tr><th>Digit</th><th>Last ${s.window} draws</th><th>All ${s.draws}</th><th>Draws since last</th></tr>` +
+      rows.map(r => `<tr class="${hot.includes(r.n) ? "best" : ""}"><td class="n">${r.n}</td>
+        <td>${r.recent}</td><td>${r.all}</td><td>${r.gap}</td></tr>`).join("") + "</table>";
+    h += `<h2>From past results (${s.from} to ${s.to}, ${s.draws} draws)</h2>
+      <div class="note">These are counts of what already happened. Tested on the past draws, the hot numbers hit
+      ${t.hot_up_digits.hit}% (pure chance ${t.hot_up_digits.chance}%) for upper digits,
+      ${t.hot_down_digits.hit}% (chance ${t.hot_down_digits.chance}%) for lower digits and
+      ${t.top_down_pairs.hit}% (chance ${t.top_down_pairs.chance}%) for lower pairs.</div>
+      <div class="grid">
+      <div class="card"><h3>Upper digits (last 3 of first prize) · hot: ${s.hot_up_digits.join(" ")}</h3>
+        ${dig(s.up_digits, s.hot_up_digits)}</div>
+      <div class="card"><h3>Lower digits (2-digit prize) · hot: ${s.hot_down_digits.join(" ")}</h3>
+        ${dig(s.down_digits, s.hot_down_digits)}</div>
+      <div class="card"><h3>Lower pairs that came most often</h3><div class="chips">` +
+      s.top_down_pairs.map(p => `<span>${p.n} <small>x${p.times}, last ${p.last}</small></span>`).join("") +
+      `</div></div></div>`;
+  }
+  document.getElementById("app").innerHTML = h;
+}).catch(() => {
+  document.getElementById("meta").textContent = "data.json could not be loaded";
+});
+</script>
+</body>
+</html>
