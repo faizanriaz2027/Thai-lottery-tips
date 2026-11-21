@@ -2,12 +2,13 @@
  "draw_date": "2026-12-01",
  "status": "ready",
  "collect_from": "2026-11-01",
- "updated_at": "2026-11-20T18:49+07:00",
+ "updated_at": "2026-11-21T09:49+07:00",
  "days_collected": [
-  "2026-11-20"
+  "2026-11-20",
+  "2026-11-21"
  ],
- "voices_total": 29,
- "voices_counted": 29,
+ "voices_total": 67,
+ "voices_counted": 61,
  "weights": {
   "tipster": 3,
   "site": 2,
@@ -18,14 +19,15 @@
   "up_digits": [
    {
     "n": "3",
-    "count": 9,
-    "sites": 5,
-    "days": 1,
-    "weight": 38,
+    "count": 11,
+    "sites": 6,
+    "days": 2,
+    "weight": 47,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 9
+     "2026-11-20": 9,
+     "2026-11-21": 11
     },
     "rating": 100,
     "past": {
@@ -36,16 +38,17 @@
    },
    {
     "n": "2",
-    "count": 9,
-    "sites": 4,
-    "days": 1,
-    "weight": 36,
+    "count": 10,
+    "sites": 5,
+    "days": 2,
+    "weight": 42,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 9
+     "2026-11-20": 9,
+     "2026-11-21": 10
     },
-    "rating": 95,
+    "rating": 89,
     "past": {
      "times": 70,
      "last": "2026-09-01",
@@ -54,16 +57,17 @@
    },
    {
     "n": "7",
-    "count": 9,
-    "sites": 4,
-    "days": 1,
-    "weight": 36,
+    "count": 10,
+    "sites": 5,
+    "days": 2,
+    "weight": 42,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 9
+     "2026-11-20": 9,
+     "2026-11-21": 10
     },
-    "rating": 95,
+    "rating": 89,
     "past": {
      "times": 76,
      "last": "2026-10-01",
@@ -72,16 +76,17 @@
    },
    {
     "n": "5",
-    "count": 8,
-    "sites": 4,
-    "days": 1,
-    "weight": 33,
+    "count": 9,
+    "sites": 5,
+    "days": 2,
+    "weight": 39,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 8
+     "2026-11-20": 8,
+     "2026-11-21": 9
     },
-    "rating": 87,
+    "rating": 83,
     "past": {
      "times": 76,
      "last": "2026-11-16",
@@ -90,16 +95,17 @@
    },
    {
     "n": "9",
-    "count": 7,
-    "sites": 4,
-    "days": 1,
-    "weight": 30,
+    "count": 8,
+    "sites": 5,
+    "days": 2,
+    "weight": 36,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 7
+     "2026-11-20": 7,
+     "2026-11-21": 8
     },
-    "rating": 79,
+    "rating": 77,
     "past": {
      "times": 70,
      "last": "2026-08-01",
@@ -107,17 +113,37 @@
     }
    },
    {
-    "n": "0",
-    "count": 7,
-    "sites": 2,
-    "days": 1,
-    "weight": 26,
+    "n": "6",
+    "count": 6,
+    "sites": 4,
+    "days": 2,
+    "weight": 28,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 7
+     "2026-11-20": 5,
+     "2026-11-21": 6
     },
-    "rating": 68,
+    "rating": 60,
+    "past": {
+     "times": 86,
+     "last": "2026-11-16",
+     "of": 265
+    }
+   },
+   {
+    "n": "0",
+    "count": 7,
+    "sites": 2,
+    "days": 2,
+    "weight": 27,
+    "first_seen": "2026-11-20",
+    "new": false,
+    "by_day": {
+     "2026-11-20": 7,
+     "2026-11-21": 7
+    },
+    "rating": 57,
     "past": {
      "times": 74,
      "last": "2026-10-01",
@@ -128,14 +154,15 @@
     "n": "1",
     "count": 6,
     "sites": 3,
-    "days": 1,
-    "weight": 25,
+    "days": 2,
+    "weight": 26,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 6
+     "2026-11-20": 6,
+     "2026-11-21": 6
     },
-    "rating": 66,
+    "rating": 55,
     "past": {
      "times": 65,
      "last": "2026-10-01",
@@ -143,35 +170,18 @@
     }
    },
    {
-    "n": "6",
-    "count": 5,
-    "sites": 3,
-    "days": 1,
-    "weight": 22,
-    "first_seen": "2026-11-20",
-    "new": false,
-    "by_day": {
-     "2026-11-20": 5
-    },
-    "rating": 58,
-    "past": {
-     "times": 86,
-     "last": "2026-11-16",
-     "of": 265
-    }
-   },
-   {
     "n": "8",
     "count": 5,
     "sites": 3,
-    "days": 1,
-    "weight": 22,
+    "days": 2,
+    "weight": 23,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 5
+     "2026-11-20": 5,
+     "2026-11-21": 5
     },
-    "rating": 58,
+    "rating": 49,
     "past": {
      "times": 65,
      "last": "2026-06-16",
@@ -180,16 +190,17 @@
    },
    {
     "n": "4",
-    "count": 2,
-    "sites": 2,
-    "days": 1,
-    "weight": 11,
+    "count": 4,
+    "sites": 3,
+    "days": 2,
+    "weight": 20,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 2
+     "2026-11-20": 2,
+     "2026-11-21": 4
     },
-    "rating": 29,
+    "rating": 43,
     "past": {
      "times": 67,
      "last": "2026-11-16",
@@ -199,17 +210,38 @@
   ],
   "up_sets": [
    {
-    "n": "029",
-    "count": 2,
+    "n": "475",
+    "count": 3,
     "sites": 2,
-    "days": 1,
-    "weight": 11,
+    "days": 2,
+    "weight": 15,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 2
+     "2026-11-20": 1,
+     "2026-11-21": 3
     },
     "rating": 100,
+    "past": {
+     "times": 1,
+     "last": "2021-09-01",
+     "of": 265,
+     "any_order": 1
+    }
+   },
+   {
+    "n": "029",
+    "count": 2,
+    "sites": 2,
+    "days": 2,
+    "weight": 12,
+    "first_seen": "2026-11-20",
+    "new": false,
+    "by_day": {
+     "2026-11-20": 2,
+     "2026-11-21": 2
+    },
+    "rating": 80,
     "past": {
      "times": 0,
      "last": "",
@@ -218,17 +250,38 @@
     }
    },
    {
-    "n": "517",
+    "n": "274",
     "count": 2,
     "sites": 2,
-    "days": 1,
-    "weight": 11,
+    "days": 2,
+    "weight": 12,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 2
+     "2026-11-20": 1,
+     "2026-11-21": 2
     },
-    "rating": 100,
+    "rating": 80,
+    "past": {
+     "times": 0,
+     "last": "",
+     "of": 265,
+     "any_order": 0
+    }
+   },
+   {
+    "n": "517",
+    "count": 2,
+    "sites": 2,
+    "days": 2,
+    "weight": 12,
+    "first_seen": "2026-11-20",
+    "new": false,
+    "by_day": {
+     "2026-11-20": 2,
+     "2026-11-21": 2
+    },
+    "rating": 80,
     "past": {
      "times": 1,
      "last": "2021-07-01",
@@ -240,14 +293,15 @@
     "n": "651",
     "count": 2,
     "sites": 2,
-    "days": 1,
-    "weight": 11,
+    "days": 2,
+    "weight": 12,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 2
+     "2026-11-20": 2,
+     "2026-11-21": 2
     },
-    "rating": 100,
+    "rating": 80,
     "past": {
      "times": 0,
      "last": "",
@@ -256,17 +310,38 @@
     }
    },
    {
-    "n": "782",
+    "n": "751",
     "count": 2,
     "sites": 2,
-    "days": 1,
-    "weight": 11,
+    "days": 2,
+    "weight": 12,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 2
+     "2026-11-20": 1,
+     "2026-11-21": 2
     },
-    "rating": 100,
+    "rating": 80,
+    "past": {
+     "times": 0,
+     "last": "",
+     "of": 265,
+     "any_order": 2
+    }
+   },
+   {
+    "n": "782",
+    "count": 2,
+    "sites": 2,
+    "days": 2,
+    "weight": 12,
+    "first_seen": "2026-11-20",
+    "new": false,
+    "by_day": {
+     "2026-11-20": 2,
+     "2026-11-21": 2
+    },
+    "rating": 80,
     "past": {
      "times": 1,
      "last": "2023-08-16",
@@ -278,14 +353,15 @@
     "n": "015",
     "count": 1,
     "sites": 1,
-    "days": 1,
-    "weight": 6,
+    "days": 2,
+    "weight": 7,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 1
+     "2026-11-20": 1,
+     "2026-11-21": 1
     },
-    "rating": 55,
+    "rating": 47,
     "past": {
      "times": 0,
      "last": "",
@@ -297,14 +373,15 @@
     "n": "017",
     "count": 1,
     "sites": 1,
-    "days": 1,
-    "weight": 6,
+    "days": 2,
+    "weight": 7,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 1
+     "2026-11-20": 1,
+     "2026-11-21": 1
     },
-    "rating": 55,
+    "rating": 47,
     "past": {
      "times": 0,
      "last": "",
@@ -316,71 +393,15 @@
     "n": "018",
     "count": 1,
     "sites": 1,
-    "days": 1,
-    "weight": 6,
+    "days": 2,
+    "weight": 7,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 1
+     "2026-11-20": 1,
+     "2026-11-21": 1
     },
-    "rating": 55,
-    "past": {
-     "times": 0,
-     "last": "",
-     "of": 265,
-     "any_order": 0
-    }
-   },
-   {
-    "n": "019",
-    "count": 1,
-    "sites": 1,
-    "days": 1,
-    "weight": 6,
-    "first_seen": "2026-11-20",
-    "new": false,
-    "by_day": {
-     "2026-11-20": 1
-    },
-    "rating": 55,
-    "past": {
-     "times": 1,
-     "last": "2023-05-02",
-     "of": 265,
-     "any_order": 1
-    }
-   },
-   {
-    "n": "024",
-    "count": 1,
-    "sites": 1,
-    "days": 1,
-    "weight": 6,
-    "first_seen": "2026-11-20",
-    "new": false,
-    "by_day": {
-     "2026-11-20": 1
-    },
-    "rating": 55,
-    "past": {
-     "times": 0,
-     "last": "",
-     "of": 265,
-     "any_order": 0
-    }
-   },
-   {
-    "n": "025",
-    "count": 1,
-    "sites": 1,
-    "days": 1,
-    "weight": 6,
-    "first_seen": "2026-11-20",
-    "new": false,
-    "by_day": {
-     "2026-11-20": 1
-    },
-    "rating": 55,
+    "rating": 47,
     "past": {
      "times": 0,
      "last": "",
@@ -394,12 +415,13 @@
     "n": "5",
     "count": 3,
     "sites": 2,
-    "days": 1,
-    "weight": 14,
+    "days": 2,
+    "weight": 15,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 3
+     "2026-11-20": 3,
+     "2026-11-21": 3
     },
     "rating": 100,
     "past": {
@@ -412,14 +434,15 @@
     "n": "1",
     "count": 3,
     "sites": 1,
-    "days": 1,
-    "weight": 12,
+    "days": 2,
+    "weight": 13,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 3
+     "2026-11-20": 3,
+     "2026-11-21": 3
     },
-    "rating": 86,
+    "rating": 87,
     "past": {
      "times": 41,
      "last": "2026-07-16",
@@ -430,14 +453,15 @@
     "n": "2",
     "count": 3,
     "sites": 1,
-    "days": 1,
-    "weight": 12,
+    "days": 2,
+    "weight": 13,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 3
+     "2026-11-20": 3,
+     "2026-11-21": 3
     },
-    "rating": 86,
+    "rating": 87,
     "past": {
      "times": 50,
      "last": "2026-07-01",
@@ -448,14 +472,15 @@
     "n": "0",
     "count": 2,
     "sites": 1,
-    "days": 1,
-    "weight": 9,
+    "days": 2,
+    "weight": 10,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 2
+     "2026-11-20": 2,
+     "2026-11-21": 2
     },
-    "rating": 64,
+    "rating": 67,
     "past": {
      "times": 53,
      "last": "2026-11-16",
@@ -466,14 +491,15 @@
     "n": "3",
     "count": 1,
     "sites": 1,
-    "days": 1,
-    "weight": 6,
+    "days": 2,
+    "weight": 7,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 1
+     "2026-11-20": 1,
+     "2026-11-21": 1
     },
-    "rating": 43,
+    "rating": 47,
     "past": {
      "times": 47,
      "last": "2026-08-16",
@@ -484,14 +510,15 @@
     "n": "7",
     "count": 1,
     "sites": 1,
-    "days": 1,
-    "weight": 6,
+    "days": 2,
+    "weight": 7,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 1
+     "2026-11-20": 1,
+     "2026-11-21": 1
     },
-    "rating": 43,
+    "rating": 47,
     "past": {
      "times": 49,
      "last": "2026-10-01",
@@ -502,14 +529,15 @@
     "n": "9",
     "count": 1,
     "sites": 1,
-    "days": 1,
-    "weight": 6,
+    "days": 2,
+    "weight": 7,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 1
+     "2026-11-20": 1,
+     "2026-11-21": 1
     },
-    "rating": 43,
+    "rating": 47,
     "past": {
      "times": 56,
      "last": "2026-08-01",
@@ -519,17 +547,37 @@
   ],
   "down_pairs": [
    {
-    "n": "37",
+    "n": "29",
     "count": 4,
-    "sites": 2,
-    "days": 1,
-    "weight": 17,
+    "sites": 3,
+    "days": 2,
+    "weight": 20,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 4
+     "2026-11-20": 3,
+     "2026-11-21": 4
     },
     "rating": 100,
+    "past": {
+     "times": 3,
+     "last": "2021-07-01",
+     "of": 265
+    }
+   },
+   {
+    "n": "37",
+    "count": 4,
+    "sites": 2,
+    "days": 2,
+    "weight": 18,
+    "first_seen": "2026-11-20",
+    "new": false,
+    "by_day": {
+     "2026-11-20": 4,
+     "2026-11-21": 3
+    },
+    "rating": 90,
     "past": {
      "times": 3,
      "last": "2025-11-16",
@@ -540,14 +588,15 @@
     "n": "54",
     "count": 4,
     "sites": 2,
-    "days": 1,
-    "weight": 17,
+    "days": 2,
+    "weight": 18,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 4
+     "2026-11-20": 4,
+     "2026-11-21": 4
     },
-    "rating": 100,
+    "rating": 90,
     "past": {
      "times": 1,
      "last": "2025-03-01",
@@ -558,14 +607,15 @@
     "n": "36",
     "count": 3,
     "sites": 3,
-    "days": 1,
-    "weight": 16,
+    "days": 2,
+    "weight": 17,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 3
+     "2026-11-20": 3,
+     "2026-11-21": 3
     },
-    "rating": 94,
+    "rating": 85,
     "past": {
      "times": 3,
      "last": "2025-04-01",
@@ -576,14 +626,15 @@
     "n": "02",
     "count": 3,
     "sites": 2,
-    "days": 1,
-    "weight": 14,
+    "days": 2,
+    "weight": 15,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 3
+     "2026-11-20": 3,
+     "2026-11-21": 3
     },
-    "rating": 82,
+    "rating": 75,
     "past": {
      "times": 5,
      "last": "2026-01-17",
@@ -591,53 +642,18 @@
     }
    },
    {
-    "n": "29",
+    "n": "21",
     "count": 3,
     "sites": 2,
-    "days": 1,
-    "weight": 14,
+    "days": 2,
+    "weight": 15,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 3
+     "2026-11-20": 2,
+     "2026-11-21": 3
     },
-    "rating": 82,
-    "past": {
-     "times": 3,
-     "last": "2021-07-01",
-     "of": 265
-    }
-   },
-   {
-    "n": "20",
-    "count": 2,
-    "sites": 2,
-    "days": 1,
-    "weight": 11,
-    "first_seen": "2026-11-20",
-    "new": false,
-    "by_day": {
-     "2026-11-20": 2
-    },
-    "rating": 65,
-    "past": {
-     "times": 3,
-     "last": "2025-06-01",
-     "of": 265
-    }
-   },
-   {
-    "n": "21",
-    "count": 2,
-    "sites": 2,
-    "days": 1,
-    "weight": 11,
-    "first_seen": "2026-11-20",
-    "new": false,
-    "by_day": {
-     "2026-11-20": 2
-    },
-    "rating": 65,
+    "rating": 75,
     "past": {
      "times": 2,
      "last": "2024-12-16",
@@ -645,56 +661,78 @@
     }
    },
    {
-    "n": "31",
-    "count": 2,
+    "n": "30",
+    "count": 3,
     "sites": 2,
-    "days": 1,
-    "weight": 11,
+    "days": 2,
+    "weight": 15,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 2
+     "2026-11-20": 2,
+     "2026-11-21": 3
     },
-    "rating": 65,
+    "rating": 75,
+    "past": {
+     "times": 2,
+     "last": "2023-06-16",
+     "of": 265
+    }
+   },
+   {
+    "n": "43",
+    "count": 3,
+    "sites": 2,
+    "days": 2,
+    "weight": 15,
+    "first_seen": "2026-11-20",
+    "new": false,
+    "by_day": {
+     "2026-11-20": 2,
+     "2026-11-21": 3
+    },
+    "rating": 75,
+    "past": {
+     "times": 2,
+     "last": "2026-05-02",
+     "of": 265
+    }
+   },
+   {
+    "n": "47",
+    "count": 3,
+    "sites": 2,
+    "days": 2,
+    "weight": 15,
+    "first_seen": "2026-11-20",
+    "new": false,
+    "by_day": {
+     "2026-11-20": 1,
+     "2026-11-21": 3
+    },
+    "rating": 75,
     "past": {
      "times": 3,
-     "last": "2025-09-01",
+     "last": "2026-04-01",
      "of": 265
     }
    },
    {
-    "n": "32",
-    "count": 2,
+    "n": "59",
+    "count": 3,
     "sites": 2,
-    "days": 1,
-    "weight": 11,
+    "days": 2,
+    "weight": 15,
     "first_seen": "2026-11-20",
     "new": false,
     "by_day": {
-     "2026-11-20": 2
+     "2026-11-20": 2,
+     "2026-11-21": 3
     },
-    "rating": 65,
+    "rating": 75,
     "past": {
-     "times": 4,
-     "last": "2025-03-16",
-     "of": 265
-    }
-   },
-   {
-    "n": "53",
-    "count": 2,
-    "sites": 2,
-    "days": 1,
-    "weight": 11,
-    "first_seen": "2026-11-20",
-    "new": false,
-    "by_day": {
-     "2026-11-20": 2
-    },
-    "rating": 65,
-    "past": {
-     "times": 5,
-     "last": "2026-08-16",
+     "times": 3,
+     "last": "2024-10-01",
      "of": 265
     }
    }
@@ -1664,6 +1702,1195 @@
      }
     ]
    }
+  },
+  {
+   "date": "2026-11-21",
+   "updated_at": "2026-11-21T09:49+07:00",
+   "sources": [
+    {
+     "url": "https://thairesults.com/predictions",
+     "name": "Thai Lotto Predictions 01 December 2026 | 3UP & 2D VIP Tips",
+     "ok": true,
+     "voices": [
+      {
+       "name": "Abdul",
+       "up_digits": [
+        "0",
+        "5",
+        "1"
+       ],
+       "up_sets": [
+        "015",
+        "024",
+        "529",
+        "513",
+        "524",
+        "029",
+        "526",
+        "517",
+        "027",
+        "018"
+       ],
+       "down_digits": [
+        "1",
+        "5"
+       ],
+       "down_pairs": [
+        "15",
+        "17",
+        "11"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/predictions"
+      },
+      {
+       "name": "Hakeem",
+       "up_digits": [
+        "3",
+        "2",
+        "0"
+       ],
+       "up_sets": [
+        "156",
+        "516",
+        "561",
+        "651",
+        "165",
+        "615",
+        "320",
+        "230",
+        "302",
+        "032"
+       ],
+       "down_digits": [
+        "0",
+        "2"
+       ],
+       "down_pairs": [
+        "15",
+        "56",
+        "32"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/predictions"
+      },
+      {
+       "name": "Nafees",
+       "up_digits": [
+        "1",
+        "0",
+        "9"
+       ],
+       "up_sets": [
+        "019",
+        "910",
+        "901",
+        "512",
+        "935",
+        "647",
+        "385",
+        "203",
+        "112",
+        "209"
+       ],
+       "down_digits": [
+        "1",
+        "2"
+       ],
+       "down_pairs": [
+        "87",
+        "78",
+        "36"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/predictions"
+      },
+      {
+       "name": "Noufal",
+       "up_digits": [
+        "6",
+        "7",
+        "1"
+       ],
+       "up_sets": [
+        "786",
+        "714",
+        "218",
+        "025",
+        "035",
+        "671",
+        "217",
+        "892",
+        "964",
+        "829"
+       ],
+       "down_digits": [
+        "2",
+        "1"
+       ],
+       "down_pairs": [
+        "17",
+        "78",
+        "14"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/predictions"
+      },
+      {
+       "name": "Shafiqul",
+       "up_digits": [
+        "6",
+        "7",
+        "2"
+       ],
+       "up_sets": [
+        "672",
+        "782",
+        "723",
+        "873",
+        "274",
+        "724",
+        "825",
+        "729",
+        "284",
+        "761"
+       ],
+       "down_digits": [
+        "0",
+        "5"
+       ],
+       "down_pairs": [
+        "25",
+        "05",
+        "22"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/predictions"
+      }
+     ]
+    },
+    {
+     "url": "https://www.thailotterysure.com/",
+     "name": "THAI LOTTERY FREE TIP THAI LOTTERY SURE 3UP NUMBER THAILAND LOTTERY 2026 – Thai ",
+     "ok": true,
+     "voices": [
+      {
+       "name": "Touch",
+       "up_digits": [
+        "2",
+        "3",
+        "6"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.thailotterysure.com/"
+      }
+     ]
+    },
+    {
+     "url": "https://thailandlotteryksa.com/",
+     "name": "🔴 LIVE: Thai Lottery Result Today (01 December 2026) | Fast Updates",
+     "ok": true,
+     "voices": []
+    },
+    {
+     "url": "https://www.sanook.com/news/tag/เลขเด็ด/",
+     "name": "ข่าวเลขเด็ด วันนี้ล่าสุด อัปเดตข่าวเลขเด็ด ล่าสุด",
+     "ok": true,
+     "voices": []
+    },
+    {
+     "url": "https://thethaiger.com/th/check-lottery/lucky-number/",
+     "name": "เลขเด็ดงวดนี้ รวมเลขดัง เลขมงคลทุกสำนัก อัปเดตทุกงวด | Thaiger",
+     "ok": true,
+     "voices": [
+      {
+       "name": "เสือตกถัง",
+       "up_digits": [
+        "7",
+        "4"
+       ],
+       "up_sets": [
+        "479",
+        "475",
+        "473",
+        "470",
+        "178",
+        "874",
+        "674",
+        "274"
+       ],
+       "down_digits": [],
+       "down_pairs": [
+        "79",
+        "75",
+        "73",
+        "70",
+        "71",
+        "78"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thethaiger.com/th/check-lottery/lucky-number/"
+      },
+      {
+       "name": "ปฏิทินช่อง 3",
+       "up_digits": [
+        "9",
+        "5",
+        "6",
+        "2"
+       ],
+       "up_sets": [
+        "956",
+        "562",
+        "952",
+        "962",
+        "652",
+        "592"
+       ],
+       "down_digits": [],
+       "down_pairs": [
+        "95",
+        "59",
+        "96",
+        "69",
+        "92",
+        "29"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thethaiger.com/th/check-lottery/lucky-number/"
+      },
+      {
+       "name": "ทักษามหาโชค",
+       "up_digits": [
+        "3",
+        "4"
+       ],
+       "up_sets": [
+        "358",
+        "751",
+        "530",
+        "108",
+        "475"
+       ],
+       "down_digits": [],
+       "down_pairs": [
+        "38",
+        "13",
+        "47",
+        "43",
+        "01",
+        "04",
+        "51",
+        "35",
+        "57",
+        "30"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thethaiger.com/th/check-lottery/lucky-number/"
+      }
+     ]
+    },
+    {
+     "url": "https://www.lottoup.org/เลขเด็ด/",
+     "name": "เลขเด็ด หวยเด็ด อาจารย์ดังไทยรัฐงวดนี้ ทำนายฝัน แม่นๆ เข้าทุกงวด",
+     "ok": true,
+     "voices": [
+      {
+       "name": "เลขสนั่นเมือง",
+       "up_digits": [
+        "2",
+        "5"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.lottoup.org/เลขเด็ด/"
+      },
+      {
+       "name": "นกตาทิพย์",
+       "up_digits": [
+        "3"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.lottoup.org/เลขเด็ด/"
+      },
+      {
+       "name": "เลขสนั่นเมือง",
+       "up_digits": [
+        "2",
+        "5"
+       ],
+       "up_sets": [
+        "029"
+       ],
+       "down_digits": [],
+       "down_pairs": [
+        "23",
+        "29",
+        "51",
+        "54"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.lottoup.org/เลขเด็ด/"
+      },
+      {
+       "name": "นกตาทิพย์",
+       "up_digits": [
+        "3"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "31",
+        "33",
+        "35",
+        "37"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.lottoup.org/เลขเด็ด/"
+      },
+      {
+       "name": "ลุงหวัง",
+       "up_digits": [
+        "7",
+        "5"
+       ],
+       "up_sets": [
+        "475"
+       ],
+       "down_digits": [],
+       "down_pairs": [
+        "73",
+        "74",
+        "75",
+        "79",
+        "53",
+        "54"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.lottoup.org/เลขเด็ด/"
+      }
+     ]
+    },
+    {
+     "url": "https://www.luangporpakdang.net/",
+     "name": "เลขเด็ด หวยเด็ดงวดนี้ หวยไทยรัฐ แม่จำเนียร 16/11/69",
+     "ok": true,
+     "voices": []
+    },
+    {
+     "url": "https://myhora.com/lottery/lucky-number.aspx",
+     "name": "เลขเด็ด 1/12/69 หวยเด็ด 1 ธันวาคม 2569 งวดนี้ - myhora.com",
+     "ok": true,
+     "voices": []
+    },
+    {
+     "url": "https://www.maneedee.com/lekded/",
+     "name": "เลขเด็ดงวดนี้ 1 ธันวาคม 2569 (1 ธ.ค. 69 · 1/12/69) จากความฝันยอดฮิต สุ่มเลขเด็ด ",
+     "ok": true,
+     "voices": [
+      {
+       "name": "maneedee",
+       "up_digits": [],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "59",
+        "08",
+        "80",
+        "29"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.maneedee.com/lekded/"
+      },
+      {
+       "name": "maneedee",
+       "up_digits": [
+        "9"
+       ],
+       "up_sets": [
+        "269",
+        "692",
+        "595",
+        "955"
+       ],
+       "down_digits": [],
+       "down_pairs": [
+        "59",
+        "08",
+        "80",
+        "29",
+        "92",
+        "69"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.maneedee.com/lekded/"
+      }
+     ]
+    },
+    {
+     "url": "https://www.thailotteryup.com/",
+     "name": "Thai Lottery 3UP Number Win Tips Free Thailand Lottery 2026 Thai Lotto Free Win ",
+     "ok": true,
+     "voices": [
+      {
+       "name": "Single Lotto",
+       "up_digits": [
+        "8"
+       ],
+       "up_sets": [],
+       "down_digits": [
+        "3",
+        "5",
+        "7",
+        "9"
+       ],
+       "down_pairs": [
+        "82",
+        "84",
+        "85"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.thailotteryup.com/"
+      },
+      {
+       "name": "Thai Lottery Single",
+       "up_digits": [
+        "8"
+       ],
+       "up_sets": [
+        "224"
+       ],
+       "down_digits": [],
+       "down_pairs": [
+        "82",
+        "84",
+        "85"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://www.thailotteryup.com/"
+      }
+     ]
+    },
+    {
+     "url": "https://thairesults.com/champions",
+     "name": "Thai Lotto Champions 2026 | Top Predictors Leaderboard & Verified Points",
+     "ok": true,
+     "voices": []
+    },
+    {
+     "url": "https://thairesults.com/4pc-chart-papers",
+     "name": "Thai Lottery 4PC Chart Paper 01 December 2026 | VIP Cut Piece & Formulas | ThaiR",
+     "ok": true,
+     "voices": [
+      {
+       "name": "Sangthip",
+       "up_digits": [
+        "5",
+        "1"
+       ],
+       "up_sets": [
+        "651",
+        "365",
+        "857"
+       ],
+       "down_digits": [],
+       "down_pairs": [
+        "53",
+        "54",
+        "21"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "Kinyaworayale",
+       "up_digits": [
+        "3",
+        "7"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "02",
+        "03",
+        "07",
+        "30",
+        "32",
+        "37",
+        "40",
+        "43",
+        "47",
+        "70"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "Jongprasongthi",
+       "up_digits": [
+        "3",
+        "7"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "02",
+        "03",
+        "13",
+        "20",
+        "30",
+        "31",
+        "34",
+        "37",
+        "38",
+        "43"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "KruaKong",
+       "up_digits": [
+        "5",
+        "9",
+        "7",
+        "4"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "54",
+        "36",
+        "47",
+        "21",
+        "63",
+        "46"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "O.Yomsamda",
+       "up_digits": [
+        "3"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "P.Original",
+       "up_digits": [
+        "8",
+        "5"
+       ],
+       "up_sets": [
+        "645",
+        "654",
+        "101",
+        "938",
+        "106",
+        "782"
+       ],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "KruaKong2",
+       "up_digits": [
+        "5",
+        "9",
+        "7",
+        "4"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "54",
+        "36",
+        "47",
+        "21",
+        "63",
+        "46"
+       ],
+       "copy": true,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "KruaKong3",
+       "up_digits": [
+        "5",
+        "9",
+        "7",
+        "4"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "54",
+        "36",
+        "47",
+        "21",
+        "63",
+        "46"
+       ],
+       "copy": true,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "KruaKong4",
+       "up_digits": [
+        "5",
+        "9",
+        "7",
+        "4"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "54",
+        "36",
+        "47",
+        "21",
+        "63",
+        "46"
+       ],
+       "copy": true,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "KruaKong5",
+       "up_digits": [
+        "5",
+        "9",
+        "7",
+        "4"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "54",
+        "36",
+        "47",
+        "21",
+        "63",
+        "46"
+       ],
+       "copy": true,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "KruaKong6",
+       "up_digits": [
+        "5",
+        "9",
+        "7",
+        "4"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "54",
+        "36",
+        "47",
+        "21",
+        "63",
+        "46"
+       ],
+       "copy": true,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      },
+      {
+       "name": "KruaKong7",
+       "up_digits": [
+        "5",
+        "9",
+        "7",
+        "4"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "54",
+        "36",
+        "47",
+        "21",
+        "63",
+        "46"
+       ],
+       "copy": true,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/4pc-chart-papers"
+      }
+     ]
+    },
+    {
+     "url": "https://thairesults.com/first-chart-papers",
+     "name": "Thai Lottery First Chart Paper 01 December 2026 | Master Magazine Charts & Tips ",
+     "ok": true,
+     "voices": [
+      {
+       "name": "WIN",
+       "up_digits": [
+        "4",
+        "1",
+        "6",
+        "0"
+       ],
+       "up_sets": [
+        "069"
+       ],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/first-chart-papers"
+      },
+      {
+       "name": "WIN",
+       "up_digits": [
+        "2",
+        "6",
+        "0",
+        "9"
+       ],
+       "up_sets": [
+        "017"
+       ],
+       "down_digits": [],
+       "down_pairs": [
+        "28",
+        "66",
+        "02"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/first-chart-papers"
+      },
+      {
+       "name": "Satooprap",
+       "up_digits": [
+        "5",
+        "9",
+        "3"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/first-chart-papers"
+      },
+      {
+       "name": "Sethoep",
+       "up_digits": [
+        "7",
+        "0",
+        "1"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "99",
+        "48",
+        "20",
+        "36",
+        "64",
+        "19"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/first-chart-papers"
+      },
+      {
+       "name": "Philippino Tip",
+       "up_digits": [
+        "2",
+        "3",
+        "9"
+       ],
+       "up_sets": [],
+       "down_digits": [],
+       "down_pairs": [
+        "21"
+       ],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/first-chart-papers"
+      },
+      {
+       "name": "Wutprai",
+       "up_digits": [
+        "2",
+        "8",
+        "3"
+       ],
+       "up_sets": [
+        "838"
+       ],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/first-chart-papers"
+      },
+      {
+       "name": "DR",
+       "up_digits": [
+        "7",
+        "0"
+       ],
+       "up_sets": [
+        "912"
+       ],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/first-chart-papers"
+      },
+      {
+       "name": "Wutprai",
+       "up_digits": [
+        "2",
+        "7",
+        "8",
+        "9"
+       ],
+       "up_sets": [
+        "517",
+        "639",
+        "104",
+        "482",
+        "751"
+       ],
+       "down_digits": [],
+       "down_pairs": [],
+       "copy": false,
+       "day": "2026-11-21",
+       "src": "https://thairesults.com/first-chart-papers"
+      }
+     ]
+    },
+    {
+     "url": "https://thairesults.com/last-chart-papers",
+     "name": "Thai Lottery Last Chart Paper 01 December 2026 | Final VIP Tips & Calculation Ch",
+     "ok": true,
+     "voices": []
+    }
+   ],
+   "voices_total": 38,
+   "top": {
+    "up_digits": [
+     {
+      "n": "3",
+      "count": 11,
+      "sites": 6,
+      "days": 1,
+      "weight": 46,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 11
+      },
+      "rating": 100
+     },
+     {
+      "n": "2",
+      "count": 10,
+      "sites": 5,
+      "days": 1,
+      "weight": 41,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 10
+      },
+      "rating": 89
+     },
+     {
+      "n": "7",
+      "count": 10,
+      "sites": 5,
+      "days": 1,
+      "weight": 41,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 10
+      },
+      "rating": 89
+     },
+     {
+      "n": "5",
+      "count": 9,
+      "sites": 5,
+      "days": 1,
+      "weight": 38,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 9
+      },
+      "rating": 83
+     },
+     {
+      "n": "9",
+      "count": 8,
+      "sites": 5,
+      "days": 1,
+      "weight": 35,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 8
+      },
+      "rating": 76
+     }
+    ],
+    "up_sets": [
+     {
+      "n": "475",
+      "count": 3,
+      "sites": 2,
+      "days": 1,
+      "weight": 14,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 3
+      },
+      "rating": 100
+     },
+     {
+      "n": "029",
+      "count": 2,
+      "sites": 2,
+      "days": 1,
+      "weight": 11,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 2
+      },
+      "rating": 79
+     },
+     {
+      "n": "274",
+      "count": 2,
+      "sites": 2,
+      "days": 1,
+      "weight": 11,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 2
+      },
+      "rating": 79
+     },
+     {
+      "n": "517",
+      "count": 2,
+      "sites": 2,
+      "days": 1,
+      "weight": 11,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 2
+      },
+      "rating": 79
+     },
+     {
+      "n": "651",
+      "count": 2,
+      "sites": 2,
+      "days": 1,
+      "weight": 11,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 2
+      },
+      "rating": 79
+     }
+    ],
+    "down_digits": [
+     {
+      "n": "5",
+      "count": 3,
+      "sites": 2,
+      "days": 1,
+      "weight": 14,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 3
+      },
+      "rating": 100
+     },
+     {
+      "n": "1",
+      "count": 3,
+      "sites": 1,
+      "days": 1,
+      "weight": 12,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 3
+      },
+      "rating": 86
+     },
+     {
+      "n": "2",
+      "count": 3,
+      "sites": 1,
+      "days": 1,
+      "weight": 12,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 3
+      },
+      "rating": 86
+     },
+     {
+      "n": "0",
+      "count": 2,
+      "sites": 1,
+      "days": 1,
+      "weight": 9,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 2
+      },
+      "rating": 64
+     },
+     {
+      "n": "3",
+      "count": 1,
+      "sites": 1,
+      "days": 1,
+      "weight": 6,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 1
+      },
+      "rating": 43
+     }
+    ],
+    "down_pairs": [
+     {
+      "n": "29",
+      "count": 4,
+      "sites": 3,
+      "days": 1,
+      "weight": 19,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 4
+      },
+      "rating": 100
+     },
+     {
+      "n": "54",
+      "count": 4,
+      "sites": 2,
+      "days": 1,
+      "weight": 17,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 4
+      },
+      "rating": 89
+     },
+     {
+      "n": "36",
+      "count": 3,
+      "sites": 3,
+      "days": 1,
+      "weight": 16,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 3
+      },
+      "rating": 84
+     },
+     {
+      "n": "02",
+      "count": 3,
+      "sites": 2,
+      "days": 1,
+      "weight": 14,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 3
+      },
+      "rating": 74
+     },
+     {
+      "n": "21",
+      "count": 3,
+      "sites": 2,
+      "days": 1,
+      "weight": 14,
+      "first_seen": "2026-11-21",
+      "new": false,
+      "by_day": {
+       "2026-11-21": 3
+      },
+      "rating": 74
+     }
+    ]
+   }
   }
  ],
  "sources": [
@@ -1869,9 +3096,98 @@
   },
   {
    "url": "https://thethaiger.com/th/check-lottery/lucky-number/",
-   "name": "thethaiger.com",
-   "ok": false,
-   "voices": []
+   "name": "เลขเด็ดงวดนี้ รวมเลขดัง เลขมงคลทุกสำนัก อัปเดตทุกงวด | Thaiger",
+   "ok": true,
+   "voices": [
+    {
+     "name": "เสือตกถัง",
+     "up_digits": [
+      "7",
+      "4"
+     ],
+     "up_sets": [
+      "479",
+      "475",
+      "473",
+      "470",
+      "178",
+      "874",
+      "674",
+      "274"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "79",
+      "75",
+      "73",
+      "70",
+      "71",
+      "78"
+     ],
+     "copy": false,
+     "day": "2026-11-21",
+     "src": "https://thethaiger.com/th/check-lottery/lucky-number/"
+    },
+    {
+     "name": "ปฏิทินช่อง 3",
+     "up_digits": [
+      "9",
+      "5",
+      "6",
+      "2"
+     ],
+     "up_sets": [
+      "956",
+      "562",
+      "952",
+      "962",
+      "652",
+      "592"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "95",
+      "59",
+      "96",
+      "69",
+      "92",
+      "29"
+     ],
+     "copy": false,
+     "day": "2026-11-21",
+     "src": "https://thethaiger.com/th/check-lottery/lucky-number/"
+    },
+    {
+     "name": "ทักษามหาโชค",
+     "up_digits": [
+      "3",
+      "4"
+     ],
+     "up_sets": [
+      "358",
+      "751",
+      "530",
+      "108",
+      "475"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "38",
+      "13",
+      "47",
+      "43",
+      "01",
+      "04",
+      "51",
+      "35",
+      "57",
+      "30"
+     ],
+     "copy": false,
+     "day": "2026-11-21",
+     "src": "https://thethaiger.com/th/check-lottery/lucky-number/"
+    }
+   ]
   },
   {
    "url": "https://www.lottoup.org/เลขเด็ด/",
@@ -1959,6 +3275,23 @@
      "copy": false,
      "day": "2026-11-20",
      "src": "https://www.lottoup.org/เลขเด็ด/"
+    },
+    {
+     "name": "นกตาทิพย์",
+     "up_digits": [
+      "3"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "31",
+      "33",
+      "35",
+      "37"
+     ],
+     "copy": false,
+     "day": "2026-11-21",
+     "src": "https://www.lottoup.org/เลขเด็ด/"
     }
    ]
   },
@@ -2016,6 +3349,45 @@
      ],
      "copy": false,
      "day": "2026-11-20",
+     "src": "https://www.maneedee.com/lekded/"
+    },
+    {
+     "name": "maneedee",
+     "up_digits": [],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "59",
+      "08",
+      "80",
+      "29"
+     ],
+     "copy": false,
+     "day": "2026-11-21",
+     "src": "https://www.maneedee.com/lekded/"
+    },
+    {
+     "name": "maneedee",
+     "up_digits": [
+      "9"
+     ],
+     "up_sets": [
+      "269",
+      "692",
+      "595",
+      "955"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "59",
+      "08",
+      "80",
+      "29",
+      "92",
+      "69"
+     ],
+     "copy": false,
+     "day": "2026-11-21",
      "src": "https://www.maneedee.com/lekded/"
     }
    ]
@@ -2196,6 +3568,201 @@
      "down_pairs": [],
      "copy": false,
      "day": "2026-11-20",
+     "src": "https://thairesults.com/4pc-chart-papers"
+    },
+    {
+     "name": "Sangthip",
+     "up_digits": [
+      "5",
+      "1"
+     ],
+     "up_sets": [
+      "651",
+      "365",
+      "857"
+     ],
+     "down_digits": [],
+     "down_pairs": [
+      "53",
+      "54",
+      "21"
+     ],
+     "copy": false,
+     "day": "2026-11-21",
+     "src": "https://thairesults.com/4pc-chart-papers"
+    },
+    {
+     "name": "KruaKong",
+     "up_digits": [
+      "5",
+      "9",
+      "7",
+      "4"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "54",
+      "36",
+      "47",
+      "21",
+      "63",
+      "46"
+     ],
+     "copy": false,
+     "day": "2026-11-21",
+     "src": "https://thairesults.com/4pc-chart-papers"
+    },
+    {
+     "name": "P.Original",
+     "up_digits": [
+      "8",
+      "5"
+     ],
+     "up_sets": [
+      "645",
+      "654",
+      "101",
+      "938",
+      "106",
+      "782"
+     ],
+     "down_digits": [],
+     "down_pairs": [],
+     "copy": false,
+     "day": "2026-11-21",
+     "src": "https://thairesults.com/4pc-chart-papers"
+    },
+    {
+     "name": "KruaKong2",
+     "up_digits": [
+      "5",
+      "9",
+      "7",
+      "4"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "54",
+      "36",
+      "47",
+      "21",
+      "63",
+      "46"
+     ],
+     "copy": true,
+     "day": "2026-11-21",
+     "src": "https://thairesults.com/4pc-chart-papers"
+    },
+    {
+     "name": "KruaKong3",
+     "up_digits": [
+      "5",
+      "9",
+      "7",
+      "4"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "54",
+      "36",
+      "47",
+      "21",
+      "63",
+      "46"
+     ],
+     "copy": true,
+     "day": "2026-11-21",
+     "src": "https://thairesults.com/4pc-chart-papers"
+    },
+    {
+     "name": "KruaKong4",
+     "up_digits": [
+      "5",
+      "9",
+      "7",
+      "4"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "54",
+      "36",
+      "47",
+      "21",
+      "63",
+      "46"
+     ],
+     "copy": true,
+     "day": "2026-11-21",
+     "src": "https://thairesults.com/4pc-chart-papers"
+    },
+    {
+     "name": "KruaKong5",
+     "up_digits": [
+      "5",
+      "9",
+      "7",
+      "4"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "54",
+      "36",
+      "47",
+      "21",
+      "63",
+      "46"
+     ],
+     "copy": true,
+     "day": "2026-11-21",
+     "src": "https://thairesults.com/4pc-chart-papers"
+    },
+    {
+     "name": "KruaKong6",
+     "up_digits": [
+      "5",
+      "9",
+      "7",
+      "4"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "54",
+      "36",
+      "47",
+      "21",
+      "63",
+      "46"
+     ],
+     "copy": true,
+     "day": "2026-11-21",
+     "src": "https://thairesults.com/4pc-chart-papers"
+    },
+    {
+     "name": "KruaKong7",
+     "up_digits": [
+      "5",
+      "9",
+      "7",
+      "4"
+     ],
+     "up_sets": [],
+     "down_digits": [],
+     "down_pairs": [
+      "54",
+      "36",
+      "47",
+      "21",
+      "63",
+      "46"
+     ],
+     "copy": true,
+     "day": "2026-11-21",
      "src": "https://thairesults.com/4pc-chart-papers"
     }
    ]
